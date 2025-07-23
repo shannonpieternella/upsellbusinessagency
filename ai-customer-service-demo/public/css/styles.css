@@ -975,11 +975,11 @@ section {
         justify-content: center;
     }
     
-    /* Language toggle position on mobile */
+    /* Language toggle position on mobile - centered in header */
     .language-toggle {
-        top: 15px;
-        right: 50%;
-        transform: translateX(50%);
+        top: 25px; /* Approximately center of header with padding */
+        right: 20px;
+        transform: none;
     }
     
     /* Return button adjustments for mobile */
