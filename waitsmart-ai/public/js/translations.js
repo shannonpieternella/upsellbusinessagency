@@ -165,7 +165,10 @@ const translations = {
         feature3Item4: "Anonieme data sharing",
         
         // Success stories additional
-        freedUp: "Vrijgespeeld"
+        freedUp: "Vrijgespeeld",
+        
+        // Navigation
+        returnToHomepage: "Terug naar Homepage"
     },
     
     en: {
@@ -333,7 +336,10 @@ const translations = {
         feature3Item4: "Anonymous data sharing",
         
         // Success stories additional
-        freedUp: "Freed up"
+        freedUp: "Freed up",
+        
+        // Navigation
+        returnToHomepage: "Return to Homepage"
     }
 };
 

@@ -51,6 +51,40 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 20px;
 }
 
+/* Return Home Button */
+.return-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dark-secondary);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.return-home-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateX(-5px);
+}
+
+.return-home-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.return-home-btn:hover svg {
+    transform: translateX(-3px);
+}
+
 /* Language Toggle */
 .language-toggle {
     position: fixed;
