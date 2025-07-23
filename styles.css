@@ -1290,3 +1290,26 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.875rem;
     }
 }
+
+/* Footer Legal Links */
+.footer-legal-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer-legal-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-legal-links .separator {
+    color: var(--text-muted);
+    opacity: 0.5;
+}

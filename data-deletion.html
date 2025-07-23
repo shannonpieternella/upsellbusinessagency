@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Deletion Request - Upsell Business Agency</title>
+    <meta name="description" content="Request deletion of your personal data from Upsell Business Agency systems.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="legal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Return to Homepage Button -->
+    <a href="/" class="return-home-btn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M13 7L10 10L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-translate="returnToHomepage">Return to Homepage</span>
+    </a>
+
+    <!-- Header -->
+    <header class="legal-header">
+        <div class="container">
+            <h1>Data Deletion Request</h1>
+            <p class="last-updated">Your Right to Be Forgotten</p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="legal-content">
+        <div class="container">
+            <section class="legal-section">
+                <h2>About Data Deletion</h2>
+                <p>Under the General Data Protection Regulation (GDPR), you have the right to request the deletion of your personal data from our systems. This is also known as the "right to erasure" or "right to be forgotten."</p>
+            </section>
+
+            <section class="legal-section">
+                <h2>What Data Can Be Deleted</h2>
+                <p>Upon your request, we can delete:</p>
+                <ul>
+                    <li>Personal contact information (name, email, phone)</li>
+                    <li>Account and profile data</li>
+                    <li>Communication history</li>
+                    <li>Usage and analytics data</li>
+                    <li>Marketing preferences and history</li>
+                    <li>Any other personal data we hold about you</li>
+                </ul>
+            </section>
+
+            <section class="legal-section">
+                <h2>Data We May Need to Retain</h2>
+                <p>Please note that we may be required to retain certain data for legal compliance:</p>
+                <ul>
+                    <li>Financial records (7 years for tax purposes)</li>
+                    <li>Contract-related documents</li>
+                    <li>Data necessary for legal claims or disputes</li>
+                    <li>Data required by law enforcement</li>
+                </ul>
+                <p>In such cases, we will delete all data not subject to retention requirements and inform you of what must be retained and why.</p>
+            </section>
+
+            <section class="legal-section">
+                <h2>How to Request Data Deletion</h2>
+                <div class="deletion-methods">
+                    <div class="method-card">
+                        <h3>Method 1: Email Request</h3>
+                        <p>Send your deletion request to:</p>
+                        <p class="email-highlight">privacy@upsellbusinessagency.com</p>
+                        <p>Include:</p>
+                        <ul>
+                            <li>Your full name</li>
+                            <li>Email address associated with our services</li>
+                            <li>Specific data you want deleted (or "all data")</li>
+                            <li>Reason for deletion (optional)</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-card">
+                        <h3>Method 2: Online Form</h3>
+                        <form id="dataDeletionForm" class="deletion-form">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number (optional)</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dataType">Type of Data to Delete *</label>
+                                <select id="dataType" name="dataType" required>
+                                    <option value="">Select an option</option>
+                                    <option value="all">All personal data</option>
+                                    <option value="contact">Contact information only</option>
+                                    <option value="usage">Usage and analytics data</option>
+                                    <option value="marketing">Marketing data</option>
+                                    <option value="other">Other (specify below)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reason">Reason for Deletion (optional)</label>
+                                <textarea id="reason" name="reason" rows="4"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="additionalInfo">Additional Information</label>
+                                <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any other details that might help us process your request"></textarea>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="confirmDeletion" name="confirmDeletion" required>
+                                    <span>I understand that data deletion is permanent and cannot be undone</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="confirmIdentity" name="confirmIdentity" required>
+                                    <span>I confirm that I am the person whose data is being requested for deletion</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Submit Deletion Request</button>
+                        </form>
+
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="legal-section">
+                <h2>What Happens Next</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h3>Request Received</h3>
+                            <p>We acknowledge your request within 48 hours</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h3>Identity Verification</h3>
+                            <p>We may contact you to verify your identity</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h3>Data Review</h3>
+                            <p>We identify all data associated with you</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h3>Deletion Process</h3>
+                            <p>Your data is permanently deleted from our systems</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">5</div>
+                        <div class="timeline-content">
+                            <h3>Confirmation</h3>
+                            <p>You receive confirmation of deletion within 30 days</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="legal-section">
+                <h2>Important Notes</h2>
+                <div class="warning-box">
+                    <p><strong>⚠️ Warning:</strong> Data deletion is permanent and cannot be reversed. This includes:</p>
+                    <ul>
+                        <li>Loss of access to any services or accounts</li>
+                        <li>Deletion of project history and communications</li>
+                        <li>Removal from all mailing lists</li>
+                        <li>Loss of any stored preferences or settings</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="legal-section">
+                <h2>Alternative Options</h2>
+                <p>Before requesting full deletion, consider these alternatives:</p>
+                <ul>
+                    <li><strong>Data Export:</strong> Request a copy of your data first</li>
+                    <li><strong>Unsubscribe:</strong> Opt-out of marketing communications only</li>
+                    <li><strong>Data Correction:</strong> Update incorrect information</li>
+                    <li><strong>Restrict Processing:</strong> Limit how we use your data</li>
+                </ul>
+            </section>
+
+            <section class="legal-section">
+                <h2>Contact Us</h2>
+                <p>If you have questions about data deletion or need assistance:</p>
+                <div class="contact-info">
+                    <p><strong>Data Protection Officer</strong></p>
+                    <p>Email: dpo@upsellbusinessagency.com</p>
+                    <p>Privacy Team: privacy@upsellbusinessagency.com</p>
+                    <p>Phone: Available upon request</p>
+                </div>
+            </section>
+
+            <section class="legal-section">
+                <h2>Your Rights</h2>
+                <p>Remember, you have the right to:</p>
+                <ul>
+                    <li>Lodge a complaint with the Dutch Data Protection Authority</li>
+                    <li>Withdraw consent for data processing at any time</li>
+                    <li>Request information about what data we hold</li>
+                    <li>Have your data transferred to another service</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="legal-footer">
+        <div class="container">
+            <p>&copy; 2025 Upsell Business Agency. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/data-deletion.html">Data Deletion</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('dataDeletionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            const messageDiv = document.getElementById('formMessage');
+            
+            try {
+                const response = await fetch('/api/data-deletion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    messageDiv.innerHTML = '<div class="success-message">Your data deletion request has been submitted successfully. We will contact you within 48 hours to confirm your identity and process your request.</div>';
+                    this.reset();
+                } else {
+                    throw new Error('Failed to submit request');
+                }
+            } catch (error) {
+                messageDiv.innerHTML = '<div class="error-message">There was an error submitting your request. Please try again or email us directly at privacy@upsellbusinessagency.com</div>';
+            }
+        });
+    </script>
+</body>
+</html>

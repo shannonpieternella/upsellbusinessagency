@@ -150,7 +150,10 @@ const translations = {
             aiAutomation: "AI Automation",
             webDevelopment: "Web Development",
             mobileApps: "Mobile Apps",
-            copyright: "© 2025 Upsell Business Agency. All rights reserved."
+            copyright: "© 2025 Upsell Business Agency. All rights reserved.",
+            privacy: "Privacy Policy",
+            terms: "Terms of Service",
+            dataDelete: "Data Deletion"
         }
     },
     
@@ -304,7 +307,10 @@ const translations = {
             aiAutomation: "AI Automatisering",
             webDevelopment: "Web Development",
             mobileApps: "Mobile Apps",
-            copyright: "© 2025 Upsell Business Agency. All rights reserved."
+            copyright: "© 2025 Upsell Business Agency. All rights reserved.",
+            privacy: "Privacybeleid",
+            terms: "Algemene Voorwaarden",
+            dataDelete: "Gegevens Verwijderen"
         }
     }
 };

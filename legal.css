@@ -1,0 +1,350 @@
+/* Legal Pages Specific Styles */
+
+/* Legal Header */
+.legal-header {
+    background: var(--gradient);
+    color: white;
+    padding: 4rem 0 3rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.legal-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.legal-header .last-updated {
+    font-size: 1.125rem;
+    opacity: 0.9;
+}
+
+/* Legal Content */
+.legal-content {
+    padding: 4rem 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.legal-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.legal-section:last-child {
+    border-bottom: none;
+}
+
+.legal-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.legal-section h3 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.legal-section p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.legal-section ul,
+.legal-section ol {
+    margin: 1rem 0 1.5rem 2rem;
+}
+
+.legal-section li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.legal-section strong {
+    color: var(--text-primary);
+}
+
+/* Contact Info Box */
+.contact-info {
+    background: var(--dark-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+/* Data Deletion Page Specific */
+.deletion-methods {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.method-card {
+    background: var(--dark-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.method-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.email-highlight {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+/* Deletion Form */
+.deletion-form {
+    margin-top: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-top: 0.25rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: var(--gradient);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Timeline */
+.timeline {
+    margin-top: 2rem;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    width: 2px;
+    height: calc(100% + 1rem);
+    background: var(--border-color);
+}
+
+.timeline-marker {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    margin: 0;
+}
+
+/* Warning Box */
+.warning-box {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.warning-box p {
+    color: #ef4444;
+    margin-bottom: 1rem;
+}
+
+.warning-box ul {
+    margin: 0;
+}
+
+.warning-box li {
+    color: #ef4444;
+}
+
+/* Form Messages */
+.form-message {
+    margin-top: 1.5rem;
+}
+
+.success-message {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+}
+
+.error-message {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+}
+
+/* Legal Footer */
+.legal-footer {
+    background: var(--dark-secondary);
+    padding: 3rem 0;
+    margin-top: 4rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.legal-footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Return Home Button - Override for legal pages */
+.return-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.return-home-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .legal-header h1 {
+        font-size: 2rem;
+    }
+    
+    .legal-content {
+        padding: 2rem 1rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .deletion-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-item {
+        gap: 1rem;
+    }
+    
+    .timeline-marker {
+        width: 32px;
+        height: 32px;
+        font-size: 0.875rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
