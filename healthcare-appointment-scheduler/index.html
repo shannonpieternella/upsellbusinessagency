@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZorgAfspraken Pro - Premium AI-Powered Healthcare Scheduling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🏥</span>
+                    <span class="logo-text">ZorgAfspraken Pro</span>
+                </div>
+                <nav class="nav">
+                    <a href="#demo" class="nav-link">Demo</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="btn btn-primary">Start Free Trial</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="floating-icons">
+                <span class="floating-icon" style="--delay: 0s">🩺</span>
+                <span class="floating-icon" style="--delay: 1s">📅</span>
+                <span class="floating-icon" style="--delay: 2s">⏰</span>
+                <span class="floating-icon" style="--delay: 3s">💊</span>
+                <span class="floating-icon" style="--delay: 4s">🔬</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">✨</span>
+                    <span>Enterprise Healthcare Solution</span>
+                </div>
+                <h1 class="hero-title">
+                    AI-Powered Healthcare Scheduling
+                    <span class="gradient-text">That Patients Love</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Reduce no-shows by 80%, save 50% administrative time, and deliver 
+                    a world-class booking experience that healthcare practices trust.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary btn-large" onclick="scrollToDemo()">
+                        <span>See Live Demo</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large">
+                        <span>Book Demo Call</span>
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number counter" data-target="80">0</span>
+                        <span class="stat-suffix">%</span>
+                        <span class="stat-label">Fewer No-Shows</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number counter" data-target="95">0</span>
+                        <span class="stat-suffix">%</span>
+                        <span class="stat-label">Patient Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Online Booking</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="demo-preview">
+                    <div class="demo-header">
+                        <span class="demo-dot"></span>
+                        <span class="demo-dot"></span>
+                        <span class="demo-dot"></span>
+                    </div>
+                    <div class="demo-content">
+                        <div class="appointment-card floating">
+                            <div class="appointment-time">09:00</div>
+                            <div class="appointment-details">
+                                <div class="patient-name">Sarah Johnson</div>
+                                <div class="appointment-type">General Check-up</div>
+                            </div>
+                            <div class="appointment-status confirmed">Confirmed</div>
+                        </div>
+                        <div class="appointment-card floating" style="--delay: 0.2s">
+                            <div class="appointment-time">10:30</div>
+                            <div class="appointment-details">
+                                <div class="patient-name">Michael Chen</div>
+                                <div class="appointment-type">Follow-up</div>
+                            </div>
+                            <div class="appointment-status pending">AI Scheduled</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Powerful Features</span>
+                <h2 class="section-title">
+                    Everything You Need for
+                    <span class="gradient-text">Perfect Scheduling</span>
+                </h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>30-Second Booking</h3>
+                    <p>Patients book appointments in under 30 seconds with our intelligent interface</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Smart Scheduling</h3>
+                    <p>AI optimizes appointment slots, prevents conflicts, and suggests perfect times</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile First</h3>
+                    <p>Beautiful mobile experience that works perfectly on any device</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>HIPAA Compliant</h3>
+                    <p>Enterprise-grade security and full HIPAA compliance guaranteed</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Track no-show rates, utilization, and patient satisfaction metrics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>EMR Integration</h3>
+                    <p>Seamless integration with all major EMR/EHR systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Live Demo</span>
+                <h2 class="section-title">
+                    Experience the
+                    <span class="gradient-text">Future of Healthcare Scheduling</span>
+                </h2>
+            </div>
+            
+            <!-- Demo Tabs -->
+            <div class="demo-tabs">
+                <button class="demo-tab active" data-view="patient">
+                    <span class="tab-icon">👤</span>
+                    <span>Patient View</span>
+                </button>
+                <button class="demo-tab" data-view="provider">
+                    <span class="tab-icon">👨‍⚕️</span>
+                    <span>Provider Dashboard</span>
+                </button>
+            </div>
+
+            <!-- Patient View -->
+            <div class="demo-view active" id="patientView">
+                <div class="appointment-interface">
+                    <div class="appointment-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Select Service</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Choose Date & Time</div>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Confirm Booking</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Service Selection -->
+                    <div class="step-content active" id="step1">
+                        <h3>What type of appointment do you need?</h3>
+                        <div class="service-grid">
+                            <div class="service-card" data-service="consultation">
+                                <div class="service-icon">🩺</div>
+                                <h4>General Consultation</h4>
+                                <p>30 minutes • €45</p>
+                            </div>
+                            <div class="service-card" data-service="checkup">
+                                <div class="service-icon">🔍</div>
+                                <h4>Annual Check-up</h4>
+                                <p>45 minutes • €75</p>
+                            </div>
+                            <div class="service-card" data-service="specialist">
+                                <div class="service-icon">👨‍⚕️</div>
+                                <h4>Specialist Referral</h4>
+                                <p>60 minutes • €120</p>
+                            </div>
+                            <div class="service-card" data-service="followup">
+                                <div class="service-icon">📋</div>
+                                <h4>Follow-up Visit</h4>
+                                <p>15 minutes • €30</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Calendar -->
+                    <div class="step-content" id="step2">
+                        <div class="calendar-header">
+                            <h3>Select your preferred date and time</h3>
+                            <div class="ai-suggestion">
+                                <span class="ai-icon">✨</span>
+                                <span>AI suggests: Tomorrow at 10:00 AM</span>
+                            </div>
+                        </div>
+                        <div class="calendar-container">
+                            <div class="calendar-nav">
+                                <button class="calendar-prev">←</button>
+                                <span class="calendar-month">December 2024</span>
+                                <button class="calendar-next">→</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                            <div class="time-slots" id="timeSlots">
+                                <h4>Available times for <span id="selectedDate">December 15</span></h4>
+                                <div class="time-grid">
+                                    <button class="time-slot available">09:00</button>
+                                    <button class="time-slot available">09:30</button>
+                                    <button class="time-slot">10:00</button>
+                                    <button class="time-slot available">10:30</button>
+                                    <button class="time-slot available">11:00</button>
+                                    <button class="time-slot">11:30</button>
+                                    <button class="time-slot available">14:00</button>
+                                    <button class="time-slot available">14:30</button>
+                                    <button class="time-slot available">15:00</button>
+                                    <button class="time-slot">15:30</button>
+                                    <button class="time-slot available">16:00</button>
+                                    <button class="time-slot available">16:30</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Confirmation -->
+                    <div class="step-content" id="step3">
+                        <div class="confirmation-container">
+                            <div class="confirmation-icon">✅</div>
+                            <h3>Appointment Confirmed!</h3>
+                            <div class="appointment-summary">
+                                <div class="summary-item">
+                                    <span class="summary-label">Service:</span>
+                                    <span class="summary-value" id="summaryService">General Consultation</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Date:</span>
+                                    <span class="summary-value" id="summaryDate">December 15, 2024</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Time:</span>
+                                    <span class="summary-value" id="summaryTime">10:00 AM</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Doctor:</span>
+                                    <span class="summary-value">Dr. Sarah Mitchell</span>
+                                </div>
+                            </div>
+                            <div class="confirmation-actions">
+                                <button class="btn btn-primary">Add to Calendar</button>
+                                <button class="btn btn-secondary">Send Confirmation Email</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="step-navigation">
+                        <button class="btn btn-secondary" id="prevBtn" style="display: none">Previous</button>
+                        <button class="btn btn-primary" id="nextBtn">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Provider View -->
+            <div class="demo-view" id="providerView">
+                <div class="provider-dashboard">
+                    <div class="dashboard-header">
+                        <h3>Today's Schedule</h3>
+                        <div class="dashboard-actions">
+                            <button class="btn btn-small">Add Emergency Slot</button>
+                            <button class="btn btn-small btn-secondary">Export Schedule</button>
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-timeline">
+                        <div class="timeline-header">
+                            <div class="timeline-time">Time</div>
+                            <div class="timeline-content">Appointments</div>
+                        </div>
+                        <div class="timeline-body">
+                            <div class="timeline-slot">
+                                <div class="timeline-time">09:00</div>
+                                <div class="timeline-appointment confirmed">
+                                    <div class="appointment-info">
+                                        <h4>Sarah Johnson</h4>
+                                        <p>General Check-up • Room 3</p>
+                                    </div>
+                                    <div class="appointment-actions">
+                                        <button class="action-btn">📋</button>
+                                        <button class="action-btn">💬</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-slot">
+                                <div class="timeline-time">09:30</div>
+                                <div class="timeline-appointment pending">
+                                    <div class="appointment-info">
+                                        <h4>Michael Chen</h4>
+                                        <p>Follow-up • Room 2</p>
+                                        <span class="ai-badge">AI Scheduled</span>
+                                    </div>
+                                    <div class="appointment-actions">
+                                        <button class="action-btn">📋</button>
+                                        <button class="action-btn">💬</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-slot">
+                                <div class="timeline-time">10:00</div>
+                                <div class="timeline-empty">
+                                    <button class="add-slot-btn">+ Add Appointment</button>
+                                </div>
+                            </div>
+                            <div class="timeline-slot">
+                                <div class="timeline-time">10:30</div>
+                                <div class="timeline-appointment confirmed">
+                                    <div class="appointment-info">
+                                        <h4>Emma Davis</h4>
+                                        <p>Vaccination • Room 1</p>
+                                    </div>
+                                    <div class="appointment-actions">
+                                        <button class="action-btn">📋</button>
+                                        <button class="action-btn">💬</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">📅</div>
+                            <div class="stat-content">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Today's Appointments</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-value">92%</div>
+                                <div class="stat-label">Confirmation Rate</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-content">
+                                <div class="stat-value">8 min</div>
+                                <div class="stat-label">Avg Wait Time</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🤖</div>
+                            <div class="stat-content">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">AI Optimizations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="roi-section">
+        <div class="container">
+            <div class="roi-container">
+                <div class="roi-content">
+                    <h2>Calculate Your ROI</h2>
+                    <p>See how much you can save with ZorgAfspraken Pro</p>
+                    <div class="roi-inputs">
+                        <div class="roi-input">
+                            <label>Current no-show rate (%)</label>
+                            <input type="range" id="noShowRate" min="5" max="30" value="20" />
+                            <span class="roi-value" id="noShowValue">20%</span>
+                        </div>
+                        <div class="roi-input">
+                            <label>Average appointment value (€)</label>
+                            <input type="range" id="appointmentValue" min="30" max="200" value="75" />
+                            <span class="roi-value" id="appointmentValueDisplay">€75</span>
+                        </div>
+                        <div class="roi-input">
+                            <label>Monthly appointments</label>
+                            <input type="range" id="monthlyAppointments" min="50" max="500" value="200" />
+                            <span class="roi-value" id="appointmentsValue">200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="roi-results">
+                    <h3>Your Potential Savings</h3>
+                    <div class="roi-metric">
+                        <span class="roi-label">Monthly Revenue Lost to No-Shows</span>
+                        <span class="roi-amount" id="currentLoss">€3,000</span>
+                    </div>
+                    <div class="roi-metric highlight">
+                        <span class="roi-label">Monthly Savings with ZorgAfspraken Pro</span>
+                        <span class="roi-amount" id="monthlySavings">€2,400</span>
+                    </div>
+                    <div class="roi-metric">
+                        <span class="roi-label">Annual ROI</span>
+                        <span class="roi-amount" id="annualROI">€28,800</span>
+                    </div>
+                    <button class="btn btn-primary btn-large">Start Saving Today</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Success Stories</span>
+                <h2 class="section-title">
+                    Trusted by
+                    <span class="gradient-text">1000+ Healthcare Practices</span>
+                </h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p>"ZorgAfspraken Pro reduced our no-show rate from 25% to just 5%. The ROI was immediate."</p>
+                    <div class="testimonial-author">
+                        <img src="placeholder-doctor-1.jpg" alt="Dr. Lisa van den Berg">
+                        <div>
+                            <h4>Dr. Lisa van den Berg</h4>
+                            <span>Amsterdam Medical Center</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p>"The AI scheduling is brilliant. It knows exactly when to fit in urgent appointments."</p>
+                    <div class="testimonial-author">
+                        <img src="placeholder-doctor-2.jpg" alt="Dr. Mark de Vries">
+                        <div>
+                            <h4>Dr. Mark de Vries</h4>
+                            <span>Rotterdam Family Practice</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p>"Our patients love the easy booking. We've seen a 40% increase in online appointments."</p>
+                    <div class="testimonial-author">
+                        <img src="placeholder-doctor-3.jpg" alt="Dr. Sarah Jansen">
+                        <div>
+                            <h4>Dr. Sarah Jansen</h4>
+                            <span>Utrecht Specialist Clinic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Practice?</h2>
+                <p>Join 1000+ healthcare practices already using ZorgAfspraken Pro</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-large">Start Free 30-Day Trial</button>
+                    <button class="btn btn-secondary btn-large">Schedule Demo</button>
+                </div>
+                <div class="cta-features">
+                    <span>✓ No credit card required</span>
+                    <span>✓ Setup in 24 hours</span>
+                    <span>✓ Full support included</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">🏥</span>
+                        <span class="logo-text">ZorgAfspraken Pro</span>
+                    </div>
+                    <p>The premium healthcare scheduling solution trusted by practices worldwide.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Security</a>
+                    <a href="#">API Docs</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Partners</a>
+                </div>
+                <div class="footer-compliance">
+                    <h4>Compliance</h4>
+                    <div class="compliance-badges">
+                        <span class="badge">HIPAA Compliant</span>
+                        <span class="badge">ISO 27001</span>
+                        <span class="badge">GDPR Ready</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZorgAfspraken Pro. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Service Demo - Interactive Platform</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/demo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">
+            <span class="flag">🇬🇧</span> English
+        </button>
+        <button class="lang-btn" data-lang="nl">
+            <span class="flag">🇳🇱</span> Nederlands
+        </button>
+    </div>
+
+    <!-- Demo Header -->
+    <header class="demo-header">
+        <div class="container">
+            <div class="demo-header-content">
+                <a href="/ai-customer-service-demo" class="back-link">← <span data-i18n="demo.back">Back to Industries</span></a>
+                <div class="industry-info">
+                    <span class="industry-icon" id="industryIcon"></span>
+                    <h1 class="industry-title" id="industryTitle"></h1>
+                </div>
+                <div class="demo-status">
+                    <span class="status-indicator active"></span>
+                    <span data-i18n="demo.status">Live Demo</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Role Tabs -->
+    <div class="role-tabs-container">
+        <div class="container">
+            <div class="role-tabs">
+                <button class="role-tab active" data-role="customer">
+                    <span class="tab-icon">👤</span>
+                    <span class="tab-label" data-i18n="demo.tabs.customer">Customer</span>
+                </button>
+                <button class="role-tab" data-role="agent">
+                    <span class="tab-icon">👨‍💼</span>
+                    <span class="tab-label" data-i18n="demo.tabs.agent">Agent</span>
+                </button>
+                <button class="role-tab" data-role="manager">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-label" data-i18n="demo.tabs.manager">Manager</span>
+                </button>
+                <button class="role-tab" data-role="email">
+                    <span class="tab-icon">📧</span>
+                    <span class="tab-label" data-i18n="demo.tabs.email">Email AI</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer View -->
+    <div class="role-view active" id="customerView">
+        <div class="container">
+            <div class="customer-chat-container">
+                <div class="chat-window">
+                    <div class="chat-header">
+                        <div class="chat-company-info">
+                            <span class="company-icon" id="companyIcon"></span>
+                            <div class="company-details">
+                                <h3 class="company-name" id="companyName"></h3>
+                                <p class="company-status">
+                                    <span class="status-dot online"></span>
+                                    <span data-i18n="chat.status.online">Online - We typically reply instantly</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="chat-action-btn" title="Language">
+                                <span id="chatLanguageIndicator">🇬🇧</span>
+                            </button>
+                            <button class="chat-action-btn" title="Settings">⚙️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-date-divider">
+                            <span data-i18n="chat.today">Today</span>
+                        </div>
+                        <div class="message ai">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p id="welcomeMessage"></p>
+                                <span class="message-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-suggestions" id="quickSuggestions">
+                        <!-- Quick suggestions will be loaded here -->
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <form id="chatForm" class="chat-form">
+                            <input 
+                                type="text" 
+                                id="chatInput" 
+                                class="chat-input" 
+                                placeholder="Type your message..."
+                                data-placeholder-en="Type your message..."
+                                data-placeholder-nl="Typ uw bericht..."
+                                autocomplete="off"
+                            >
+                            <button type="submit" class="send-btn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M2 10L8 4L8 8L16 8L16 12L8 12L8 16L2 10Z" fill="currentColor" transform="rotate(-90 10 10)"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="chat-info-panel">
+                    <h3 data-i18n="chat.info.title">How it works</h3>
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <span class="info-icon">🌐</span>
+                            <h4 data-i18n="chat.info.language.title">Language Detection</h4>
+                            <p data-i18n="chat.info.language.desc">Write in English or Dutch - the AI automatically detects and responds in your language</p>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-icon">⚡</span>
+                            <h4 data-i18n="chat.info.instant.title">Instant Responses</h4>
+                            <p data-i18n="chat.info.instant.desc">Get immediate, accurate answers powered by GPT-4 technology</p>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-icon">🎯</span>
+                            <h4 data-i18n="chat.info.context.title">Industry Context</h4>
+                            <p data-i18n="chat.info.context.desc">Responses are tailored to your selected industry with relevant information</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent View -->
+    <div class="role-view" id="agentView">
+        <div class="container">
+            <div class="agent-dashboard">
+                <div class="dashboard-header">
+                    <h2 data-i18n="agent.title">Agent Dashboard</h2>
+                    <div class="agent-stats">
+                        <div class="stat-badge">
+                            <span class="stat-value" id="activeTickets">0</span>
+                            <span class="stat-label" data-i18n="agent.stats.active">Active</span>
+                        </div>
+                        <div class="stat-badge">
+                            <span class="stat-value" id="avgResponseTime">0s</span>
+                            <span class="stat-label" data-i18n="agent.stats.response">Avg Response</span>
+                        </div>
+                        <div class="stat-badge success">
+                            <span class="stat-value" id="resolvedToday">0</span>
+                            <span class="stat-label" data-i18n="agent.stats.resolved">Resolved Today</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="agent-grid">
+                    <div class="tickets-panel">
+                        <div class="panel-header">
+                            <h3 data-i18n="agent.tickets.title">Live Tickets</h3>
+                            <div class="filter-buttons">
+                                <button class="filter-btn active" data-filter="all" data-i18n="agent.filter.all">All</button>
+                                <button class="filter-btn" data-filter="pending" data-i18n="agent.filter.pending">Pending</button>
+                                <button class="filter-btn" data-filter="in-progress" data-i18n="agent.filter.progress">In Progress</button>
+                            </div>
+                        </div>
+                        <div class="tickets-list" id="ticketsList">
+                            <!-- Tickets will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-detail-panel">
+                        <div class="panel-header">
+                            <h3 data-i18n="agent.detail.title">Ticket Details</h3>
+                        </div>
+                        <div class="ticket-detail" id="ticketDetail">
+                            <div class="empty-state">
+                                <span class="empty-icon">📋</span>
+                                <p data-i18n="agent.detail.empty">Select a ticket to view details</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-suggestions-panel">
+                        <div class="panel-header">
+                            <h3 data-i18n="agent.ai.title">AI Suggestions</h3>
+                            <span class="ai-indicator">🤖 GPT-4</span>
+                        </div>
+                        <div class="ai-suggestions" id="aiSuggestions">
+                            <div class="empty-state">
+                                <span class="empty-icon">💡</span>
+                                <p data-i18n="agent.ai.empty">AI suggestions will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manager View -->
+    <div class="role-view" id="managerView">
+        <div class="container">
+            <div class="manager-dashboard">
+                <div class="dashboard-header">
+                    <h2 data-i18n="manager.title">Manager Analytics</h2>
+                    <div class="time-filter">
+                        <button class="time-btn active" data-range="today" data-i18n="manager.time.today">Today</button>
+                        <button class="time-btn" data-range="week" data-i18n="manager.time.week">This Week</button>
+                        <button class="time-btn" data-range="month" data-i18n="manager.time.month">This Month</button>
+                    </div>
+                </div>
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-icon">⏱️</span>
+                            <span class="kpi-trend up">↑ <span id="responseTimeTrend">0</span>%</span>
+                        </div>
+                        <div class="kpi-value" id="avgResponseTimeKPI">0s</div>
+                        <div class="kpi-label" data-i18n="manager.kpi.response">Avg Response Time</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-icon">😊</span>
+                            <span class="kpi-trend up">↑ <span id="satisfactionTrend">0</span>%</span>
+                        </div>
+                        <div class="kpi-value" id="satisfactionRate">0%</div>
+                        <div class="kpi-label" data-i18n="manager.kpi.satisfaction">Customer Satisfaction</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-icon">📊</span>
+                            <span class="kpi-trend" id="ticketsTrend">0</span>
+                        </div>
+                        <div class="kpi-value" id="totalTickets">0</div>
+                        <div class="kpi-label" data-i18n="manager.kpi.tickets">Active Tickets</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-icon">✅</span>
+                            <span class="kpi-trend up">↑ <span id="resolutionTrend">0</span>%</span>
+                        </div>
+                        <div class="kpi-value" id="resolutionRate">0%</div>
+                        <div class="kpi-label" data-i18n="manager.kpi.resolution">Resolution Rate</div>
+                    </div>
+                </div>
+                
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3 data-i18n="manager.charts.tickets">Tickets by Hour</h3>
+                        <canvas id="ticketsByHourChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 data-i18n="manager.charts.language">Language Distribution</h3>
+                        <canvas id="languageChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 data-i18n="manager.charts.satisfaction">Satisfaction by Language</h3>
+                        <canvas id="satisfactionByLangChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 data-i18n="manager.charts.agents">Agent Performance</h3>
+                        <div class="agents-table" id="agentsTable">
+                            <!-- Agent performance table will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-feed">
+                    <h3 data-i18n="manager.activity.title">Recent Activity</h3>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activity items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email AI View -->
+    <div class="role-view" id="emailView">
+        <div class="container">
+            <div class="email-dashboard">
+                <div class="dashboard-header">
+                    <h2 data-i18n="email.title">AI Email Automation</h2>
+                    <div class="email-info">
+                        <span class="status-indicator"></span>
+                        <span data-i18n="email.status">Connected to email server - Processing automatically</span>
+                    </div>
+                </div>
+
+                <div class="email-integration-info">
+                    <div class="integration-card">
+                        <div class="integration-icon">🔌</div>
+                        <h3 data-i18n="email.integration.title">Email Server Integration</h3>
+                        <p data-i18n="email.integration.desc">This AI can connect directly to your email server (Gmail, Outlook, custom SMTP) and automatically respond to customer emails 24/7</p>
+                        <div class="integration-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span data-i18n="email.features.auto">Automatic email detection and response</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span data-i18n="email.features.context">Context-aware responses based on email history</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span data-i18n="email.features.multilang">Multi-language support (NL/EN)</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✅</span>
+                                <span data-i18n="email.features.escalate">Smart escalation to human agents when needed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="email-compose-section">
+                    <h3 data-i18n="email.compose.title">Test AI Email Response</h3>
+                    <form id="emailComposeForm" class="email-compose-form">
+                        <div class="form-group">
+                            <label data-i18n="email.compose.from">Your Email:</label>
+                            <input type="email" id="emailFrom" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="email.compose.subject">Subject:</label>
+                            <input type="text" id="emailSubject" placeholder="Subject of your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="email.compose.message">Message:</label>
+                            <textarea id="emailMessage" rows="4" placeholder="Type your email message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-i18n="email.compose.send">Send Test Email</button>
+                    </form>
+                </div>
+
+                <div class="email-simulation">
+                    <h3 data-i18n="email.simulation.title">Email Inbox</h3>
+                    <div class="email-filters">
+                        <button class="filter-btn active" data-filter="all" data-i18n="email.filters.all">All</button>
+                        <button class="filter-btn" data-filter="new" data-i18n="email.filters.new">New</button>
+                        <button class="filter-btn" data-filter="replied" data-i18n="email.filters.replied">Replied</button>
+                    </div>
+                    
+                    <div class="email-grid">
+                        <div class="email-list-panel">
+                            <h4 data-i18n="email.inbox">Inbox</h4>
+                            <div class="email-list" id="emailList">
+                                <!-- Emails will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="email-detail-panel">
+                            <div id="emailDetail" class="email-detail">
+                                <div class="empty-state">
+                                    <span class="empty-icon">📧</span>
+                                    <p data-i18n="email.select">Select an email to see AI response</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="email-stats">
+                    <div class="stat-card">
+                        <h4 data-i18n="email.stats.title">Email Processing Statistics</h4>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <span class="stat-number" id="totalEmails">0</span>
+                                <span class="stat-label" data-i18n="email.stats.total">Total Emails</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="repliedEmails">0</span>
+                                <span class="stat-label" data-i18n="email.stats.replied">AI Replied</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="avgEmailTime">0s</span>
+                                <span class="stat-label" data-i18n="email.stats.avgtime">Avg Response Time</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="emailAccuracy">98%</span>
+                                <span class="stat-label" data-i18n="email.stats.accuracy">Accuracy Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/demo.js"></script>
+</body>
+</html>

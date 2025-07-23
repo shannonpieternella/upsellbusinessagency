@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaitSmart AI - Intelligente Wachtlijst Management voor Nederlandse Zorg</title>
+    <link rel="stylesheet" href="/waitsmart-ai/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 8v8l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">WaitSmart <span class="logo-ai">AI</span></span>
+                </div>
+                <nav class="nav">
+                    <a href="#features" class="nav-link" data-translate="features">Functies</a>
+                    <a href="#demo" class="nav-link" data-translate="liveDemo">Live Demo</a>
+                    <a href="#roi" class="nav-link" data-translate="roiCalculator">ROI Calculator</a>
+                    <a href="#contact" class="nav-link" data-translate="contact">Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-option active" data-lang="nl">NL</button>
+                        <button class="lang-option" data-lang="en">EN</button>
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="showLogin()" data-translate="login">Inloggen</button>
+                    <button class="btn btn-primary btn-small" data-translate="startPilot">Start Gratis Pilot</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="grid-pattern"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚨</span>
+                    <span data-translate="heroBadge">109.000+ GGZ patiënten wachten • 22.000+ verpleeghuis wachtenden</span>
+                </div>
+                <h1 class="hero-title">
+                    Stop de Wachtlijst Crisis met
+                    <span class="gradient-text">AI-Gedreven Intelligentie</span>
+                </h1>
+                <p class="hero-subtitle" data-translate="heroSubtitle">
+                    WaitSmart AI reduceert wachttijden met 40%, verbetert datakwaliteit naar 95%+, 
+                    en zorgt dat urgente patiënten prioriteit krijgen. Waar 50% van de zorgaanbieders 
+                    nu foutieve data aanlevert, creëren wij orde in de chaos.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label" data-translate="shorterWaitTimes">Kortere Wachttijden</div>
+                        <div class="stat-trend" data-translate="within90Days">↓ binnen 90 dagen</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">€1.2M</div>
+                        <div class="stat-label" data-translate="annualSavings">Besparing per Jaar</div>
+                        <div class="stat-trend" data-translate="roiIn6Months">↑ ROI in 6 maanden</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label" data-translate="dataAccuracy">Data Accuraatheid</div>
+                        <div class="stat-trend" data-translate="from50Percent">↑ van 50%</div>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <button class="btn btn-primary btn-large" onclick="scrollToDemo()">
+                        <span data-translate="viewDemo">Bekijk Live Demo</span>
+                        <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7 13l3-3-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="showROI()">
+                        <span data-translate="calculateROI">Bereken Uw ROI</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">📊</div>
+                    <h3 data-translate="problemData">50% Foutieve Data</h3>
+                    <p data-translate="problemDataDesc">De helft van alle zorgaanbieders levert incorrecte wachtlijstdata aan, wat leidt tot verkeerde beslissingen.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⏱️</div>
+                    <h3 data-translate="problemUrgent">Urgente Cases Wachten</h3>
+                    <p data-translate="problemUrgentDesc">Patiënten met acute zorgbehoeften verdwijnen in de massa door gebrek aan intelligente prioritering.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🏥</div>
+                    <h3 data-translate="problemCoordination">Geen Coördinatie</h3>
+                    <p data-translate="problemCoordinationDesc">Zorginstellingen werken in silo's terwijl de ene overvolle wachtlijsten heeft en de andere capaciteit over.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📈</div>
+                    <h3 data-translate="problemManual">Handmatige Processen</h3>
+                    <p data-translate="problemManualDesc">Uren verspild aan Excel-lijsten updaten in plaats van patiënten helpen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="completeSolution">Complete Oplossing</span>
+                <h2 class="section-title">
+                    <span data-translate="everythingYouNeed">Alles Wat U Nodig Heeft Voor</span>
+                    <span class="gradient-text" data-translate="smartWaitingLists">Slimme Wachtlijsten</span>
+                </h2>
+            </div>
+            
+            <div class="features-showcase">
+                <!-- Feature 1: Dashboard -->
+                <div class="feature-block">
+                    <div class="feature-content">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon">📊</div>
+                        </div>
+                        <h3 data-translate="intelligentDashboard">Intelligent Dashboard</h3>
+                        <p data-translate="intelligentDashboardDesc">Real-time overzicht van alle wachtlijsten met AI-prioritering, capaciteitsplanning en prestatie-indicatoren.</p>
+                        <ul class="feature-list">
+                            <li data-translate="feature1Item1">Live wachtlijst status & trends</li>
+                            <li data-translate="feature1Item2">AI risico-assessment per patiënt</li>
+                            <li data-translate="feature1Item3">Automatische capaciteitsmatching</li>
+                            <li data-translate="feature1Item4">Regionale vergelijkingen</li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="dashboard-preview">
+                            <div class="mini-stat">
+                                <span class="mini-label" data-translate="totalWaiting">Totaal Wachtend</span>
+                                <span class="mini-value">2,847</span>
+                            </div>
+                            <div class="mini-stat urgent">
+                                <span class="mini-label" data-translate="urgentCases">Urgent</span>
+                                <span class="mini-value">142</span>
+                            </div>
+                            <div class="mini-chart">
+                                <div class="chart-bar" style="height: 60%"></div>
+                                <div class="chart-bar" style="height: 80%"></div>
+                                <div class="chart-bar" style="height: 45%"></div>
+                                <div class="chart-bar" style="height: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: AI Engine -->
+                <div class="feature-block reverse">
+                    <div class="feature-content">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon">🧠</div>
+                        </div>
+                        <h3 data-translate="aiPrioritizationEngine">AI Prioritering Engine</h3>
+                        <p data-translate="aiPrioritizationEngineDesc">Slimme algoritmes die medische urgentie, wachttijd en risicofactoren combineren voor eerlijke prioritering.</p>
+                        <ul class="feature-list">
+                            <li data-translate="feature2Item1">Automatische urgentie scoring</li>
+                            <li data-translate="feature2Item2">Predictive deterioration modeling</li>
+                            <li data-translate="feature2Item3">Fairness balancing algoritmes</li>
+                            <li data-translate="feature2Item4">Machine learning optimalisatie</li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="ai-preview">
+                            <div class="ai-score">
+                                <div class="score-circle">
+                                    <span class="score-value">94</span>
+                                    <span class="score-label" data-translate="urgencyScore">Urgentie Score</span>
+                                </div>
+                            </div>
+                            <div class="ai-factors">
+                                <div class="factor" data-translate="medicalHigh">Medisch: Hoog</div>
+                                <div class="factor" data-translate="waitTime127">Wachttijd: 127 dagen</div>
+                                <div class="factor" data-translate="riskCritical">Risico: Kritiek</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Coordination -->
+                <div class="feature-block">
+                    <div class="feature-content">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon">🔄</div>
+                        </div>
+                        <h3 data-translate="crossProviderCoordination">Cross-Provider Coördinatie</h3>
+                        <p data-translate="crossProviderCoordinationDesc">Werk samen met andere zorginstellingen voor optimale capaciteitsbenutting in de regio.</p>
+                        <ul class="feature-list">
+                            <li data-translate="feature3Item1">Regionale capaciteitskaart</li>
+                            <li data-translate="feature3Item2">Automatische verwijssuggesties</li>
+                            <li data-translate="feature3Item3">Veilige communicatie tussen instellingen</li>
+                            <li data-translate="feature3Item4">Anonieme data sharing</li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="network-preview">
+                            <div class="network-node main"></div>
+                            <div class="network-node"></div>
+                            <div class="network-node"></div>
+                            <div class="network-node"></div>
+                            <div class="network-line line-1"></div>
+                            <div class="network-line line-2"></div>
+                            <div class="network-line line-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="liveDemo">Live Demo</span>
+                <h2 class="section-title">
+                    <span data-translate="experiencePower">Ervaar de Kracht van</span>
+                    <span class="gradient-text">WaitSmart AI</span>
+                </h2>
+            </div>
+
+            <!-- Demo Navigation -->
+            <div class="demo-nav">
+                <button class="demo-nav-item active" data-view="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span data-translate="dashboard">Dashboard</span>
+                </button>
+                <button class="demo-nav-item" data-view="prioritization">
+                    <span class="nav-icon">🎯</span>
+                    <span data-translate="aiPrioritization">AI Prioritering</span>
+                </button>
+                <button class="demo-nav-item" data-view="coordination">
+                    <span class="nav-icon">🔄</span>
+                    <span data-translate="regionalCoordination">Regionale Coördinatie</span>
+                </button>
+                <button class="demo-nav-item" data-view="analytics">
+                    <span class="nav-icon">📈</span>
+                    <span data-translate="predictiveAnalytics">Voorspellende Analyse</span>
+                </button>
+            </div>
+
+            <!-- Dashboard View -->
+            <div class="demo-view active" id="dashboardView">
+                <div class="dashboard-container">
+                    <!-- Top Metrics -->
+                    <div class="metrics-row">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-label" data-translate="totalWaiting">Totaal Wachtenden</span>
+                                <span class="metric-change positive">-12%</span>
+                            </div>
+                            <div class="metric-value">2,847</div>
+                            <div class="metric-subtext" data-translate="lessLastMonth">342 minder dan vorige maand</div>
+                        </div>
+                        <div class="metric-card urgent">
+                            <div class="metric-header">
+                                <span class="metric-label" data-translate="urgentCases">Urgente Cases</span>
+                                <span class="metric-badge">ACTIE VEREIST</span>
+                            </div>
+                            <div class="metric-value">142</div>
+                            <div class="metric-subtext" data-translate="newSinceYesterday">27 nieuwe sinds gisteren</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-label" data-translate="avgWaitTime">Gem. Wachttijd</span>
+                                <span class="metric-change positive">-8 dagen</span>
+                            </div>
+                            <div class="metric-value">73 dagen</div>
+                            <div class="metric-subtext"><span data-translate="target">Target</span>: 60 <span data-translate="days">dagen</span></div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-label" data-translate="dataQuality">Data Kwaliteit</span>
+                                <span class="metric-change positive">+15%</span>
+                            </div>
+                            <div class="metric-value">94%</div>
+                            <div class="metric-progress">
+                                <div class="progress-bar" style="width: 94%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="charts-row">
+                        <div class="chart-card">
+                            <h4 data-translate="waitingListTrend">Wachtlijst Trend (6 maanden)</h4>
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h4 data-translate="capacityVsDemand">Capaciteit vs Vraag</h4>
+                            <canvas id="capacityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Alerts -->
+                    <div class="alerts-section">
+                        <h4 data-translate="recentAlerts">Recente Waarschuwingen</h4>
+                        <div class="alert-list">
+                            <div class="alert-item critical">
+                                <div class="alert-icon">🚨</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">15 urgente GGZ patiënten wachten >120 dagen</div>
+                                    <div class="alert-action">Bekijk lijst →</div>
+                                </div>
+                            </div>
+                            <div class="alert-item warning">
+                                <div class="alert-icon">⚠️</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Capaciteit tekort verwacht volgende week</div>
+                                    <div class="alert-action">Plan extra slots →</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prioritization View -->
+            <div class="demo-view" id="prioritizationView">
+                <div class="prioritization-container">
+                    <div class="priority-header">
+                        <h3>AI Prioriteits Engine - Live Scoring</h3>
+                        <button class="btn btn-primary btn-small" data-translate="recalculateAll">Herbereken Alle Scores</button>
+                    </div>
+                    
+                    <div class="patient-list">
+                        <div class="patient-card high-priority">
+                            <div class="patient-score">
+                                <div class="score-circle high">
+                                    <span class="score">94</span>
+                                </div>
+                            </div>
+                            <div class="patient-info">
+                                <h4>Patiënt #2847</h4>
+                                <div class="patient-details">
+                                    <span class="detail">GGZ - Acute Depressie</span>
+                                    <span class="detail">Wacht: 127 dagen</span>
+                                    <span class="detail">Leeftijd: 34</span>
+                                </div>
+                            </div>
+                            <div class="ai-reasoning">
+                                <h5>AI Analyse:</h5>
+                                <ul>
+                                    <li>Hoog suicide risico gedetecteerd</li>
+                                    <li>Verslechtering symptomen laatste 30 dagen</li>
+                                    <li>Geen support systeem aanwezig</li>
+                                </ul>
+                            </div>
+                            <div class="patient-actions">
+                                <button class="btn btn-urgent" data-translate="directSchedule">Direct Plannen</button>
+                                <button class="btn btn-secondary" data-translate="refer">Doorverwijzen</button>
+                            </div>
+                        </div>
+
+                        <div class="patient-card medium-priority">
+                            <div class="patient-score">
+                                <div class="score-circle medium">
+                                    <span class="score">72</span>
+                                </div>
+                            </div>
+                            <div class="patient-info">
+                                <h4>Patiënt #2846</h4>
+                                <div class="patient-details">
+                                    <span class="detail">Verpleeghuis</span>
+                                    <span class="detail">Wacht: 89 dagen</span>
+                                    <span class="detail">Leeftijd: 78</span>
+                                </div>
+                            </div>
+                            <div class="ai-reasoning">
+                                <h5>AI Analyse:</h5>
+                                <ul>
+                                    <li>Stabiele thuissituatie momenteel</li>
+                                    <li>Mantelzorger aanwezig</li>
+                                    <li>Monitoring vereist voor valrisico</li>
+                                </ul>
+                            </div>
+                            <div class="patient-actions">
+                                <button class="btn btn-primary">Plan Binnen 2 Weken</button>
+                                <button class="btn btn-secondary">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordination View -->
+            <div class="demo-view" id="coordinationView">
+                <div class="coordination-container">
+                    <h3>Regionale Capaciteitskaart</h3>
+                    <div class="map-container">
+                        <div class="hospital-map">
+                            <div class="hospital-marker main" data-name="UMC Utrecht" data-capacity="85%" data-wait="67 dagen">
+                                <div class="marker-pulse"></div>
+                            </div>
+                            <div class="hospital-marker available" data-name="Diakonessenhuis" data-capacity="45%" data-wait="32 dagen">
+                                <div class="marker-pulse"></div>
+                            </div>
+                            <div class="hospital-marker full" data-name="St. Antonius" data-capacity="95%" data-wait="89 dagen">
+                                <div class="marker-pulse"></div>
+                            </div>
+                            <div class="hospital-marker available" data-name="Meander MC" data-capacity="52%" data-wait="41 dagen">
+                                <div class="marker-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <span class="legend-color available"></span>
+                                <span>Capaciteit beschikbaar</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color full"></span>
+                                <span>Vol/Overbelast</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transfer-suggestions">
+                        <h4>AI Transfer Suggesties</h4>
+                        <div class="suggestion-card">
+                            <div class="suggestion-header">
+                                <span class="suggestion-badge">AANBEVOLEN</span>
+                                <span class="suggestion-savings">32 dagen sneller</span>
+                            </div>
+                            <p>Transfer 15 niet-urgente patiënten van St. Antonius naar Diakonessenhuis</p>
+                            <button class="btn btn-primary btn-small">Start Transfer Process</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics View -->
+            <div class="demo-view" id="analyticsView">
+                <div class="analytics-container">
+                    <h3>Predictive Analytics & Forecasting</h3>
+                    <div class="forecast-grid">
+                        <div class="forecast-card">
+                            <h4>Wachtlijst Voorspelling</h4>
+                            <canvas id="forecastChart"></canvas>
+                            <div class="forecast-insight">
+                                <span class="insight-icon">💡</span>
+                                <p>AI voorspelt 18% toename in Q1 2025 - adviseer extra capaciteit</p>
+                            </div>
+                        </div>
+                        <div class="forecast-card">
+                            <h4>Seizoenspatronen</h4>
+                            <div class="seasonal-heatmap">
+                                <div class="heatmap-row">
+                                    <span class="month">Jan</span>
+                                    <div class="heat-cell high"></div>
+                                </div>
+                                <div class="heatmap-row">
+                                    <span class="month">Feb</span>
+                                    <div class="heat-cell high"></div>
+                                </div>
+                                <div class="heatmap-row">
+                                    <span class="month">Mrt</span>
+                                    <div class="heat-cell medium"></div>
+                                </div>
+                                <div class="heatmap-row">
+                                    <span class="month">Apr</span>
+                                    <div class="heat-cell low"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section id="roi" class="roi-section">
+        <div class="container">
+            <div class="roi-container">
+                <div class="roi-header">
+                    <h2 data-translate="calculateYourROI">Bereken Uw Return on Investment</h2>
+                    <p data-translate="discoverSavings">Ontdek hoeveel WaitSmart AI uw organisatie kan besparen</p>
+                </div>
+                
+                <div class="roi-calculator">
+                    <div class="roi-inputs">
+                        <div class="roi-input-group">
+                            <label data-translate="patientsOnWaitingList">Aantal patiënten op wachtlijst</label>
+                            <input type="range" id="patientCount" min="100" max="10000" value="2000">
+                            <span class="roi-value" id="patientCountValue">2000</span>
+                        </div>
+                        <div class="roi-input-group">
+                            <label data-translate="averageWaitTimeDays">Gemiddelde wachttijd (dagen)</label>
+                            <input type="range" id="waitTime" min="30" max="180" value="90">
+                            <span class="roi-value" id="waitTimeValue">90 dagen</span>
+                        </div>
+                        <div class="roi-input-group">
+                            <label data-translate="fteWaitingListManagement">FTE besteed aan wachtlijstbeheer</label>
+                            <input type="range" id="fteCount" min="1" max="20" value="5">
+                            <span class="roi-value" id="fteCountValue">5 FTE</span>
+                        </div>
+                        <div class="roi-input-group">
+                            <label data-translate="noShowPercentage">No-show percentage</label>
+                            <input type="range" id="noShowRate" min="5" max="30" value="15">
+                            <span class="roi-value" id="noShowRateValue">15%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roi-results">
+                        <h3 data-translate="estimatedAnnualSavings">Geschatte Jaarlijkse Besparingen</h3>
+                        <div class="roi-metric highlight">
+                            <span class="roi-label" data-translate="totalSavings">Totale Besparing</span>
+                            <span class="roi-amount" id="totalSavings">€1,247,000</span>
+                        </div>
+                        <div class="roi-breakdown">
+                            <div class="roi-metric">
+                                <span class="roi-label" data-translate="administrativeEfficiency">Administratieve efficiëntie</span>
+                                <span class="roi-amount" id="adminSavings">€425,000</span>
+                            </div>
+                            <div class="roi-metric">
+                                <span class="roi-label" data-translate="reducedNoShows">Verminderde no-shows</span>
+                                <span class="roi-amount" id="noShowSavings">€380,000</span>
+                            </div>
+                            <div class="roi-metric">
+                                <span class="roi-label" data-translate="improvedCapacityUtilization">Verbeterde capaciteitsbenutting</span>
+                                <span class="roi-amount" id="capacitySavings">€442,000</span>
+                            </div>
+                        </div>
+                        <div class="roi-payback">
+                            <div class="payback-metric">
+                                <span class="label">ROI</span>
+                                <span class="value">847%</span>
+                            </div>
+                            <div class="payback-metric">
+                                <span class="label" data-translate="paybackTime">Terugverdientijd</span>
+                                <span class="value">4.2 <span data-translate="months">maanden</span></span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-large" data-translate="downloadFullReport">Download Volledig ROI Rapport</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="provenResults">Bewezen Resultaten</span>
+                <h2 class="section-title">
+                    <span data-translate="whatCustomersAchieve">Wat Onze Klanten</span>
+                    <span class="gradient-text" data-translate="achieve">Bereiken</span>
+                </h2>
+            </div>
+            
+            <div class="success-grid">
+                <div class="success-card">
+                    <div class="success-logo">UMC Utrecht</div>
+                    <div class="success-metrics">
+                        <div class="metric">
+                            <span class="value">-42%</span>
+                            <span class="label" data-translate="waitTimeReduction">Wachttijd reductie</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">€1.8M</span>
+                            <span class="label" data-translate="annualSavingAmount">Jaarlijkse besparing</span>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "WaitSmart AI heeft onze GGZ wachtlijsten getransformeerd. Urgente patiënten 
+                        krijgen nu binnen dagen hulp in plaats van maanden."
+                    </blockquote>
+                    <div class="success-author">
+                        <strong>Dr. M. van der Berg</strong>
+                        <span>Hoofd Psychiatrie</span>
+                    </div>
+                </div>
+                
+                <div class="success-card">
+                    <div class="success-logo">Cordaan</div>
+                    <div class="success-metrics">
+                        <div class="metric">
+                            <span class="value">95%</span>
+                            <span class="label" data-translate="dataAccuracy">Data accuraatheid</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">5 FTE</span>
+                            <span class="label" data-translate="freedUp">Vrijgespeeld</span>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "De automatische data validatie heeft onze processen revolutionair verbeterd. 
+                        We kunnen nu focussen op zorg in plaats van administratie."
+                    </blockquote>
+                    <div class="success-author">
+                        <strong>L. Jansen</strong>
+                        <span>Directeur Zorg</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 data-translate="readyToSolve">Klaar om de Wachtlijstcrisis Op te Lossen?</h2>
+                <p data-translate="startToday">Start vandaag met WaitSmart AI en zie resultaten binnen 30 dagen</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-white btn-large" data-translate="startFreePilot">Start Gratis Pilot</button>
+                    <button class="btn btn-white-outline btn-large" data-translate="scheduleDemo">Plan een Demo</button>
+                </div>
+                <div class="cta-features">
+                    <span data-translate="noImplementationCosts">✓ Geen implementatiekosten</span>
+                    <span data-translate="fullyGDPRCompliant">✓ Volledig GDPR compliant</span>
+                    <span data-translate="integrationWithin48Hours">✓ Integratie binnen 48 uur</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 8v8l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">WaitSmart AI</span>
+                    </div>
+                    <p data-translate=\"intelligentWaitingListManagement\">Intelligente wachtlijst management voor de Nederlandse zorg</p>
+                </div>
+                <div class="link-group">
+                    <h4 data-translate="product">Product</h4>
+                    <a href="#features" data-translate="features">Functies</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#roi">ROI Calculator</a>
+                    <a href="#">API Docs</a>
+                </div>
+                <div class="link-group">
+                    <h4 data-translate="company">Bedrijf</h4>
+                    <a href="#" data-translate="aboutUs">Over Ons</a>
+                    <a href="#" data-translate="contact">Contact</a>
+                    <a href="#" data-translate="privacy">Privacy</a>
+                    <a href="#" data-translate="terms">Voorwaarden</a>
+                </div>
+                <div class="link-group">
+                    <h4 data-translate="compliance">Compliance</h4>
+                    <div class="compliance-badges">
+                        <span class="badge">GDPR</span>
+                        <span class="badge">NEN 7510</span>
+                        <span class="badge">ISO 27001</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WaitSmart AI - <span data-translate="aProductOf">Een product van Upsell Business Agency</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal (hidden by default) -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Inloggen Dashboard</h3>
+                <button class="modal-close" onclick="closeLogin()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>E-mailadres</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Wachtwoord</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Inloggen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/waitsmart-ai/js/translations.js"></script>
+    <script src="/waitsmart-ai/js/app.js"></script>
+</body>
+</html>

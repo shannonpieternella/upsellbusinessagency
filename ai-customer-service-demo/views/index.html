@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Service Demo - Multilingual Support Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">
+            <span class="flag">🇬🇧</span> English
+        </button>
+        <button class="lang-btn" data-lang="nl">
+            <span class="flag">🇳🇱</span> Nederlands
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🤖</span>
+                    <span class="logo-text">AI Customer Service</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#features" class="nav-link" data-i18n="nav.features">Features</a>
+                    <a href="#industries" class="nav-link" data-i18n="nav.industries">Industries</a>
+                    <a href="#demo" class="nav-link" data-i18n="nav.demo">Demo</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span data-i18n="hero.badge">Live Demo Platform</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line-1" data-i18n="hero.title.line1">Experience the Future of</span>
+                    <span class="title-line-2">
+                        <span class="gradient-text animated-gradient" data-i18n="hero.title.line2">Multilingual AI Customer Service</span>
+                    </span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">
+                    See how AI transforms customer support with intelligent, context-aware responses in multiple languages. 
+                    Real-time analytics, seamless handoffs, and 24/7 availability.
+                </p>
+                <div class="hero-highlight">
+                    <span class="highlight-icon">📧</span>
+                    <span data-i18n="hero.email">NEW: AI Email Automation - Connect directly to your email server and let AI handle customer emails 24/7!</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#industries" class="btn btn-primary btn-glow">
+                        <span data-i18n="hero.cta.primary">Choose Your Industry</span>
+                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7 13L10 10L7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="#features" class="btn btn-secondary" data-i18n="hero.cta.secondary">Learn More</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat stat-animated">
+                        <span class="stat-number counter" data-target="95">0</span><span class="stat-suffix">%</span>
+                        <span class="stat-label" data-i18n="hero.stats.accuracy">Accuracy</span>
+                    </div>
+                    <div class="stat stat-animated">
+                        <span class="stat-prefix">&lt;</span><span class="stat-number counter" data-target="2">0</span><span class="stat-suffix">s</span>
+                        <span class="stat-label" data-i18n="hero.stats.response">Response Time</span>
+                    </div>
+                    <div class="stat stat-animated">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label" data-i18n="hero.stats.availability">Availability</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-wrapper">
+                    <div class="chat-preview floating-card">
+                        <div class="chat-header">
+                            <span class="status-dot pulse"></span>
+                            <span data-i18n="hero.chat.title">AI Assistant Online</span>
+                        </div>
+                        <div class="chat-messages">
+                            <div class="message customer slide-in">
+                                <span data-i18n="hero.chat.customer">How can I track my order?</span>
+                            </div>
+                            <div class="message ai typing slide-in-delayed">
+                                <span class="typing-indicator">
+                                    <span></span><span></span><span></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-cards">
+                        <div class="feature-float-card card-1">
+                            <span class="card-icon">🌐</span>
+                            <span class="card-text">Auto Language Detection</span>
+                        </div>
+                        <div class="feature-float-card card-2">
+                            <span class="card-icon">⚡</span>
+                            <span class="card-text">Instant Responses</span>
+                        </div>
+                        <div class="feature-float-card card-3">
+                            <span class="card-icon">🤖</span>
+                            <span class="card-text">GPT-4 Powered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span data-i18n="hero.scroll">Scroll to explore</span>
+            <div class="scroll-arrow">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 5L10 15M10 15L6 11M10 15L14 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="features.title">Powerful Features for Every Business</h2>
+                <p class="section-subtitle" data-i18n="features.subtitle">
+                    Everything you need to deliver exceptional customer service
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title" data-i18n="features.multilingual.title">Multilingual Support</h3>
+                    <p class="feature-description" data-i18n="features.multilingual.description">
+                        Seamless conversations in English and Dutch with automatic language detection
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title" data-i18n="features.ai.title">GPT-4 Powered</h3>
+                    <p class="feature-description" data-i18n="features.ai.description">
+                        Context-aware responses that understand your business and customers
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title" data-i18n="features.analytics.title">Real-time Analytics</h3>
+                    <p class="feature-description" data-i18n="features.analytics.description">
+                        Track performance, satisfaction, and language usage in real-time
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title" data-i18n="features.handoff.title">Smart Handoffs</h3>
+                    <p class="feature-description" data-i18n="features.handoff.description">
+                        Seamless transfer to human agents when needed with full context
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title" data-i18n="features.instant.title">Instant Responses</h3>
+                    <p class="feature-description" data-i18n="features.instant.description">
+                        No waiting times - immediate, accurate answers 24/7
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title" data-i18n="features.custom.title">Industry Specific</h3>
+                    <p class="feature-description" data-i18n="features.custom.description">
+                        Tailored responses for your specific industry and use cases
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="industries.title">Choose Your Industry Demo</h2>
+                <p class="section-subtitle" data-i18n="industries.subtitle">
+                    Experience AI customer service tailored to your specific industry needs
+                </p>
+            </div>
+            <div class="industries-grid" id="industriesGrid">
+                <!-- Industries will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="how.title">See It In Action</h2>
+                <p class="section-subtitle" data-i18n="how.subtitle">
+                    Three perspectives showing the complete customer service experience
+                </p>
+            </div>
+            <div class="roles-grid">
+                <div class="role-card">
+                    <div class="role-icon">👤</div>
+                    <h3 class="role-title" data-i18n="how.customer.title">Customer View</h3>
+                    <p class="role-description" data-i18n="how.customer.description">
+                        Chat with AI in your preferred language. Get instant, accurate answers to your questions.
+                    </p>
+                    <ul class="role-features">
+                        <li data-i18n="how.customer.feature1">Auto-language detection</li>
+                        <li data-i18n="how.customer.feature2">Quick suggestions</li>
+                        <li data-i18n="how.customer.feature3">Real-time responses</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon">👨‍💼</div>
+                    <h3 class="role-title" data-i18n="how.agent.title">Agent Dashboard</h3>
+                    <p class="role-description" data-i18n="how.agent.description">
+                        Monitor live conversations, get AI suggestions, and handle escalations efficiently.
+                    </p>
+                    <ul class="role-features">
+                        <li data-i18n="how.agent.feature1">Live ticket management</li>
+                        <li data-i18n="how.agent.feature2">AI-powered suggestions</li>
+                        <li data-i18n="how.agent.feature3">Language indicators</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon">📊</div>
+                    <h3 class="role-title" data-i18n="how.manager.title">Manager Analytics</h3>
+                    <p class="role-description" data-i18n="how.manager.description">
+                        Track KPIs, language distribution, and team performance with real-time dashboards.
+                    </p>
+                    <ul class="role-features">
+                        <li data-i18n="how.manager.feature1">Performance metrics</li>
+                        <li data-i18n="how.manager.feature2">Language analytics</li>
+                        <li data-i18n="how.manager.feature3">Trend analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title" data-i18n="cta.title">Ready to Transform Your Customer Service?</h2>
+                <p class="cta-subtitle" data-i18n="cta.subtitle">
+                    Choose an industry above to see the AI in action
+                </p>
+                <a href="#industries" class="btn btn-primary btn-large" data-i18n="cta.button">Start Demo Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p data-i18n="footer.text">© 2024 Upsell Business Agency. AI-powered customer service solutions.</p>
+                <p class="footer-note" data-i18n="footer.note">
+                    This is a demo platform showcasing AI capabilities in customer service.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/landing.js"></script>
+</body>
+</html>
