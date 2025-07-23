@@ -977,9 +977,9 @@ section {
     
     /* Language toggle position on mobile - centered in header */
     .language-toggle {
-        top: 25px; /* Approximately center of header with padding */
+        top: 28px; /* Center vertically in header */
         right: 20px;
-        transform: none;
+        transform: translateY(-50%);
     }
     
     /* Return button adjustments for mobile */
@@ -996,16 +996,25 @@ section {
     
     /* Header adjustments */
     .main-header {
-        padding: 0.75rem 0;
+        padding: 1rem 0;
     }
     
     .header-content {
-        flex-direction: column;
-        gap: 0.75rem;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
     }
     
     .logo {
-        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        gap: 8px;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.25rem;
     }
 }
