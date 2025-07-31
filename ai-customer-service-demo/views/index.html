@@ -6,6 +6,54 @@
     <title>AI Customer Service Demo - Multilingual Support Platform</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- UTM Tracking Code -->
+<script>
+    (function() {
+      // Configuration
+      var TRACKING_URL = 'https://tracking.upsellbusinessagency.com';
+      var DOMAIN = 'upsellbusinessagency.com';
+      
+      // Generate unique visitor ID (persists across sessions)
+      var visitorId = localStorage.getItem('utm_visitor_id');
+      if (!visitorId) {
+        visitorId = 'v-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('utm_visitor_id', visitorId);
+      }
+      
+      // Generate session ID (new for each browser session)
+      var sessionId = sessionStorage.getItem('utm_session_id');
+      if (!sessionId) {
+        sessionId = 's-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        sessionStorage.setItem('utm_session_id', sessionId);
+      }
+      
+      // Get UTM parameters from URL
+      var urlParams = new URLSearchParams(window.location.search);
+      var utmSource = urlParams.get('utm_source') || localStorage.getItem('utm_source') || 'direct';
+      var utmMedium = urlParams.get('utm_medium') || localStorage.getItem('utm_medium') || 'none';
+      var utmCampaign = urlParams.get('utm_campaign') || localStorage.getItem('utm_campaign') || '';
+      
+      // Store UTM params for the session
+      if (urlParams.get('utm_source')) {
+        localStorage.setItem('utm_source', utmSource);
+        localStorage.setItem('utm_medium', utmMedium);
+        localStorage.setItem('utm_campaign', utmCampaign);
+      }
+      
+      // Send tracking pixel
+      var img = new Image(1, 1);
+      img.src = TRACKING_URL + '/t.gif?' + 
+        'sid=' + encodeURIComponent(sessionId) +
+        '&vid=' + encodeURIComponent(visitorId) +
+        '&d=' + encodeURIComponent(DOMAIN) +
+        '&p=' + encodeURIComponent(window.location.pathname) +
+        '&t=' + encodeURIComponent(document.title) +
+        '&r=' + encodeURIComponent(document.referrer) +
+        '&utm_source=' + encodeURIComponent(utmSource) +
+        '&utm_medium=' + encodeURIComponent(utmMedium) +
+        '&utm_campaign=' + encodeURIComponent(utmCampaign);
+    })();
+    </script>
 </head>
 <body>
     <!-- Return to Homepage Button -->
