@@ -1,0 +1,118 @@
+<!-- 
+PRODUCTION VERSION
+Replace sales.html with this file on the server
+Or update the API endpoints manually
+-->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Jouw Business - Exclusieve Mentorship & Done-For-You Oplossingen</title>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); // Replace with your actual Pixel ID
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'Sales Page',
+        content_category: 'Business Mentorship'
+    });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID'); // Replace with your GA ID
+    </script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <script>
+    // UTM Parameter Tracking
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmParams = {};
+        const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        
+        utmKeys.forEach(key => {
+            const value = urlParams.get(key);
+            if (value) {
+                utmParams[key] = value;
+                sessionStorage.setItem(key, value);
+            } else {
+                const storedValue = sessionStorage.getItem(key);
+                if (storedValue) {
+                    utmParams[key] = storedValue;
+                }
+            }
+        });
+        
+        window.utmParams = utmParams;
+        
+        if (Object.keys(utmParams).length > 0) {
+            console.log('UTM Parameters detected:', utmParams);
+            
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'UTMLanding', utmParams);
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'utm_landing', {
+                    'event_category': 'engagement',
+                    'event_label': JSON.stringify(utmParams)
+                });
+            }
+        }
+    })();
+    
+    // Update API base URL for production
+    window.API_BASE_URL = '/web/api';
+    </script>
+    
+    <!-- Include the rest of your existing styles here -->
+    <style>
+        /* Copy all styles from original sales.html */
+    </style>
+</head>
+<body>
+    <!-- Copy all body content from original sales.html -->
+    
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_live_NDoClCNZcvPTcCqHknJz4rkL000PdI7L5S');
+
+        // Update checkout functions to use production URLs
+        async function checkoutMentorship() {
+            // ... existing code ...
+            const response = await fetch(window.API_BASE_URL + '/create-checkout-session', {
+                // ... rest of the code
+            });
+        }
+
+        async function checkoutDoneForYou() {
+            // ... existing code ...
+            const response = await fetch(window.API_BASE_URL + '/create-checkout-session', {
+                // ... rest of the code
+            });
+        }
+        
+        // ... rest of your JavaScript
+    </script>
+</body>
+</html>
