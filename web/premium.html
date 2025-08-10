@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Business in 90 Days - Guaranteed</title>
+    <meta name="description" content="Join 500+ entrepreneurs who scaled to $10K/month. Done-for-you systems or 1-on-1 mentorship.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <style>
+        :root {
+            --primary: #000000;
+            --primary-gradient: linear-gradient(90deg, #000000 0%, #434343 100%);
+            --accent: #0071e3;
+            --accent-hover: #0051a2;
+            --success: #34C759;
+            --warning: #FF9500;
+            --danger: #FF3B30;
+            --background: #ffffff;
+            --surface: #f5f5f7;
+            --surface-elevated: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --text-tertiary: #d2d2d7;
+            --border: rgba(0,0,0,0.08);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            background: var(--background);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-cta {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 40px 100px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,113,227,0.05) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-10%, -10%) rotate(0deg); }
+            50% { transform: translate(10%, 10%) rotate(180deg); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--success);
+            color: white;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn-primary {
+            padding: 20px 40px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            padding: 20px 40px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-sm);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Trust Indicators */
+        .trust-bar {
+            padding: 60px 40px;
+            background: var(--surface);
+            text-align: center;
+        }
+
+        .trust-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trust-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .trust-stat {
+            animation: fadeIn 0.8s ease;
+        }
+
+        .trust-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .trust-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 48px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 40px;
+            background: var(--surface);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: var(--surface-elevated);
+            border-radius: var(--radius);
+            padding: 48px;
+            position: relative;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .pricing-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .pricing-price {
+            text-align: center;
+            margin: 32px 0;
+        }
+
+        .price-amount {
+            font-size: 56px;
+            font-weight: 800;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .price-currency {
+            font-size: 24px;
+            margin-top: 8px;
+        }
+
+        .price-period {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .check-icon::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--accent);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius);
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .author-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-rating {
+            color: #FFD700;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        /* Guarantee Section */
+        .guarantee {
+            padding: 100px 40px;
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .guarantee-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .guarantee-badge {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .guarantee h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+
+        .guarantee p {
+            font-size: 20px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            margin-top: 60px;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            padding: 24px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--surface-elevated);
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 32px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 32px 24px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: var(--surface);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .cta-text {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 16px 20px;
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .features-grid,
+            .pricing-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #000000;
+                --surface: #1c1c1e;
+                --surface-elevated: #2c2c2e;
+                --text-primary: #ffffff;
+                --text-secondary: #98989d;
+                --border: rgba(255,255,255,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Upsell Business Agency</a>
+            <button class="nav-cta" onclick="scrollToSection('pricing')">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">🚀 500+ Success Stories</div>
+        <h1>Scale to $10K/Month<br>In 90 Days</h1>
+        <p class="hero-subtitle">
+            Join elite entrepreneurs who transformed their business with our proven systems. 
+            Get everything done for you or learn directly from experts.
+        </p>
+        <div class="hero-cta-group">
+            <button class="btn-primary" onclick="scrollToSection('pricing')">
+                Start Your Transformation
+            </button>
+            <button class="btn-secondary" onclick="scrollToSection('features')">
+                See How It Works
+            </button>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="trust-container">
+            <p class="trust-text">Trusted by ambitious entrepreneurs worldwide</p>
+            <div class="trust-grid">
+                <div class="trust-stat">
+                    <div class="trust-number">500+</div>
+                    <div class="trust-label">Active Students</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-number">$2.5M+</div>
+                    <div class="trust-label">Revenue Generated</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-number">4.9/5</div>
+                    <div class="trust-label">Average Rating</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-number">97%</div>
+                    <div class="trust-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-badge">WHAT YOU GET</span>
+            <h2 class="section-title">Everything You Need to Succeed</h2>
+            <p class="section-subtitle">
+                Comprehensive solutions designed to accelerate your growth
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Proven Systems</h3>
+                <p class="feature-description">
+                    Battle-tested frameworks that generated millions in revenue. 
+                    Copy-paste templates that work immediately.
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">Rapid Implementation</h3>
+                <p class="feature-description">
+                    See results in days, not months. Our streamlined process 
+                    gets you operational and profitable fast.
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">1-on-1 Support</h3>
+                <p class="feature-description">
+                    Direct access to experts who've been there. Get personalized 
+                    guidance tailored to your specific situation.
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Growth Automation</h3>
+                <p class="feature-description">
+                    Set up systems that scale without you. Automated funnels, 
+                    email sequences, and conversion optimization.
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">💎</div>
+                <h3 class="feature-title">Premium Resources</h3>
+                <p class="feature-description">
+                    Access $10,000+ worth of tools, templates, and training. 
+                    Everything included, no hidden costs.
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🏆</div>
+                <h3 class="feature-title">Success Guarantee</h3>
+                <p class="feature-description">
+                    We're so confident in our system that we guarantee results. 
+                    If you don't see ROI, we work for free.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <div class="section-header">
+                <span class="section-badge">PRICING</span>
+                <h2 class="section-title">Choose Your Path to Success</h2>
+                <p class="section-subtitle">
+                    Transparent pricing with no hidden fees. Cancel anytime.
+                </p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Mentorship Program</h3>
+                        <p class="pricing-description">Learn and implement yourself with expert guidance</p>
+                    </div>
+                    <div class="pricing-price">
+                        <div class="price-amount">
+                            <span class="price-currency">€</span>
+                            <span>45</span>
+                        </div>
+                        <div class="price-period">per session</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon"></span> Weekly 1-on-1 coaching calls</li>
+                        <li><span class="check-icon"></span> Custom action plan</li>
+                        <li><span class="check-icon"></span> 24/7 Slack support</li>
+                        <li><span class="check-icon"></span> All templates & resources</li>
+                        <li><span class="check-icon"></span> Private community access</li>
+                        <li><span class="check-icon"></span> Lifetime updates</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkoutMentorship()">
+                        Start Learning Today
+                    </button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Done-For-You Service</h3>
+                        <p class="pricing-description">We build everything while you focus on growth</p>
+                    </div>
+                    <div class="pricing-price">
+                        <div class="price-amount">
+                            <span class="price-currency">€</span>
+                            <span>999</span>
+                        </div>
+                        <div class="price-period">one-time payment</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon"></span> Complete business setup</li>
+                        <li><span class="check-icon"></span> Professional website & funnel</li>
+                        <li><span class="check-icon"></span> Email automation system</li>
+                        <li><span class="check-icon"></span> Ad campaigns setup</li>
+                        <li><span class="check-icon"></span> 90-day support & optimization</li>
+                        <li><span class="check-icon"></span> €500 in bonus tools</li>
+                        <li><span class="check-icon"></span> 100% money-back guarantee</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkoutDoneForYou()">
+                        Get Everything Done For You
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-badge">SUCCESS STORIES</span>
+            <h2 class="section-title">Real Results From Real People</h2>
+            <p class="section-subtitle">
+                See what our students and clients are achieving
+            </p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "From zero to $8K recurring revenue in just 2 months. 
+                    The Done-For-You service was the best investment I've ever made."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MV</div>
+                    <div class="author-info">
+                        <div class="author-name">Mark van der Berg</div>
+                        <div class="author-title">E-commerce Founder</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "The mentorship transformed my entire approach to business. 
+                    ROI of 1500% in the first quarter alone!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SJ</div>
+                    <div class="author-info">
+                        <div class="author-name">Sarah Johnson</div>
+                        <div class="author-title">Digital Agency Owner</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "From struggling freelancer to 6-figure business owner. 
+                    This program is an absolute game-changer."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TB</div>
+                    <div class="author-info">
+                        <div class="author-name">Thomas Baker</div>
+                        <div class="author-title">SaaS Founder</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee">
+        <div class="guarantee-container">
+            <div class="guarantee-badge">💯</div>
+            <h2>100% Risk-Free Guarantee</h2>
+            <p>
+                We stand behind our programs completely. If you're not satisfied within 30 days, 
+                get a full refund. No questions asked. Your success is our priority.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="section-header">
+            <span class="section-badge">FAQ</span>
+            <h2 class="section-title">Common Questions</h2>
+            <p class="section-subtitle">
+                Everything you need to know before getting started
+            </p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How quickly will I see results?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Most clients see initial results within 7-14 days. Significant growth typically 
+                    happens within 30-60 days, depending on your commitment and market conditions.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is this suitable for beginners?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! Our programs are designed for all levels. We start where you are 
+                    and build step-by-step to success. No prior experience needed.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What's the difference between the two programs?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Mentorship is for those who want to learn and implement themselves with guidance. 
+                    Done-For-You is for those who want everything built and set up by our team while 
+                    they focus on other aspects of their business.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What if I'm not satisfied?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    We offer a 30-day money-back guarantee. If you're not completely satisfied, 
+                    you'll receive a full refund. We're confident in our ability to deliver results.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How much time do I need to invest?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    For mentorship, we recommend 3-5 hours per week. For Done-For-You, 
+                    you only need 1-2 hours for initial onboarding, then we handle everything.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Transform Your Business?</h2>
+            <p class="cta-text">
+                Join 500+ entrepreneurs who took action and changed their lives. 
+                Your success story starts today.
+            </p>
+            <div class="hero-cta-group">
+                <button class="btn-primary" onclick="scrollToSection('pricing')">
+                    Choose Your Program
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">
+            © 2025 Upsell Business Agency. All rights reserved. | 
+            <a href="/privacy" style="color: white; opacity: 0.8;">Privacy</a> | 
+            <a href="/terms" style="color: white; opacity: 0.8;">Terms</a>
+        </p>
+    </footer>
+
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_live_NDoClCNZcvPTcCqHknJz4rkL000PdI7L5S');
+
+        // Smooth scroll
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Checkout functions
+        async function checkoutMentorship() {
+            try {
+                const response = await fetch('https://upsellbusinessagency.com/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product: 'mentorship',
+                        price: 4500,
+                        name: 'Mentorship Program',
+                        description: '1-on-1 mentorship with personalized action plan'
+                    })
+                });
+
+                const session = await response.json();
+                await stripe.redirectToCheckout({ sessionId: session.id });
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            }
+        }
+
+        async function checkoutDoneForYou() {
+            try {
+                const response = await fetch('https://upsellbusinessagency.com/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product: 'done-for-you',
+                        price: 99900,
+                        name: 'Done-For-You Complete Setup',
+                        description: 'Complete business setup with website, funnel, and automation'
+                    })
+                });
+
+                const session = await response.json();
+                await stripe.redirectToCheckout({ sessionId: session.id });
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
