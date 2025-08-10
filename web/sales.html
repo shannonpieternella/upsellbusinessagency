@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Jouw Business - Exclusieve Mentorship & Done-For-You Oplossingen</title>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); // Replace with your actual Pixel ID
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'Sales Page',
+        content_category: 'Business Mentorship'
+    });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID'); // Replace with your GA ID
+    </script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <script>
+    // UTM Parameter Tracking
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmParams = {};
+        const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        
+        utmKeys.forEach(key => {
+            const value = urlParams.get(key);
+            if (value) {
+                utmParams[key] = value;
+                // Store in sessionStorage for persistence
+                sessionStorage.setItem(key, value);
+            } else {
+                // Check if we have it stored from previous page
+                const storedValue = sessionStorage.getItem(key);
+                if (storedValue) {
+                    utmParams[key] = storedValue;
+                }
+            }
+        });
+        
+        // Store for later use in checkout
+        window.utmParams = utmParams;
+        
+        // Track UTM landing
+        if (Object.keys(utmParams).length > 0) {
+            console.log('UTM Parameters detected:', utmParams);
+            
+            // Send to Facebook Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'UTMLanding', utmParams);
+            }
+            
+            // Send to Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'utm_landing', {
+                    'event_category': 'engagement',
+                    'event_label': JSON.stringify(utmParams)
+                });
+            }
+        }
+    })();
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .urgency-banner {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .pricing-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MEEST POPULAIR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pricing-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .pricing-price small {
+            font-size: 0.4em;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .pricing-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .testimonials {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4em;
+            color: #667eea;
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .testimonial-rating {
+            color: #ffd700;
+            margin-top: 10px;
+        }
+
+        .guarantee {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .guarantee-badge {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .faq {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 20px;
+        }
+
+        .faq-toggle {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .countdown {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .countdown-block {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .countdown-number {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
+
+        .benefits {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .benefit-title {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .subtitle { font-size: 1.2em; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="urgency-banner">
+        ⚡ BEPERKTE TIJD AANBIEDING - Slechts 5 plekken beschikbaar deze maand! ⚡
+    </div>
+
+    <div class="countdown">
+        <div>Deze exclusieve aanbieding eindigt in:</div>
+        <div class="countdown-timer" id="countdown">
+            <div class="countdown-block">
+                <div class="countdown-number" id="hours">23</div>
+                <div class="countdown-label">Uren</div>
+            </div>
+            <div class="countdown-block">
+                <div class="countdown-number" id="minutes">59</div>
+                <div class="countdown-label">Minuten</div>
+            </div>
+            <div class="countdown-block">
+                <div class="countdown-number" id="seconds">59</div>
+                <div class="countdown-label">Seconden</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Jouw Business Vandaag</h1>
+            <p class="subtitle">Exclusieve Mentorship & Done-For-You Oplossingen Voor Ambitieuze Ondernemers</p>
+            <p style="font-size: 1.2em; margin-top: 30px;">
+                🚀 Van €0 naar €10K/maand in 90 dagen - Gegarandeerd!
+            </p>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Waarom Kiezen Voor Onze Programma's?</h2>
+            <p class="section-subtitle">Bewezen strategieën die al 500+ ondernemers hebben geholpen</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3 class="benefit-title">10x ROI Garantie</h3>
+                    <p>Verdien minimaal 10x je investering terug binnen 6 maanden of geld terug</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3 class="benefit-title">Snelle Resultaten</h3>
+                    <p>Zie eerste resultaten binnen 7 dagen met onze bewezen systemen</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">1-op-1 Begeleiding</h3>
+                    <p>Persoonlijke aandacht en maatwerk strategieën voor jouw specifieke situatie</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔧</div>
+                    <h3 class="benefit-title">Complete Systemen</h3>
+                    <p>Kant-en-klare funnels, scripts en templates die direct werken</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Kies Jouw Transformatie Pad</h2>
+            <p class="section-subtitle">Investeer in jezelf en zie directe resultaten</p>
+            
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Mentorship Program</h3>
+                        <p style="color: #666;">Perfect voor zelfstarters</p>
+                    </div>
+                    <div class="pricing-price">
+                        €45 <small>per les</small>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>1-op-1 video coaching sessies</li>
+                        <li>Persoonlijk actieplan</li>
+                        <li>24/7 WhatsApp support</li>
+                        <li>Toegang tot exclusive community</li>
+                        <li>Wekelijkse Q&A calls</li>
+                        <li>Lifetime updates & nieuwe strategieën</li>
+                        <li>Geld-terug-garantie</li>
+                    </ul>
+                    <button class="cta-button" onclick="checkoutMentorship()">
+                        Start Nu Met Mentorship
+                    </button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Done-For-You Service</h3>
+                        <p style="color: #666;">Wij doen ALLES voor je</p>
+                    </div>
+                    <div class="pricing-price">
+                        €999 <small>eenmalig</small>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Complete business setup</li>
+                        <li>Professionele website & funnel</li>
+                        <li>Email marketing systeem</li>
+                        <li>Social media templates</li>
+                        <li>30 dagen gratis advertentie management</li>
+                        <li>3 maanden nazorg & optimalisatie</li>
+                        <li>100% tevredenheidsgarantie</li>
+                        <li>BONUS: €500 aan extra tools & software</li>
+                    </ul>
+                    <button class="cta-button" onclick="checkoutDoneForYou()">
+                        Claim Je Done-For-You Pakket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Wat Onze Klanten Zeggen</h2>
+            <p class="section-subtitle">Echte resultaten van echte ondernemers</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "In slechts 2 maanden van €0 naar €8K recurring revenue. 
+                        De Done-For-You service was de beste investering ooit!"
+                    </p>
+                    <div class="testimonial-author">- Mark de Vries, E-commerce Ondernemer</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "De mentorship sessies hebben mijn business compleet getransformeerd. 
+                        ROI van 1500% in het eerste kwartaal!"
+                    </p>
+                    <div class="testimonial-author">- Sarah Jansen, Digital Marketing Agency</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "Van struggelende freelancer naar 6-figure business owner. 
+                        Dit programma is een game-changer!"
+                    </p>
+                    <div class="testimonial-author">- Tom Bakker, SaaS Founder</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-badge">💯</div>
+            <h2 style="font-size: 2.5em; margin-bottom: 20px;">100% Geld-Terug-Garantie</h2>
+            <p style="font-size: 1.2em; max-width: 800px; margin: 0 auto;">
+                Wij staan volledig achter onze programma's. Als je binnen 30 dagen niet tevreden bent, 
+                krijg je je volledige investering terug. Geen vragen, geen gedoe. 
+                Jouw succes is onze prioriteit!
+            </p>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Veelgestelde Vragen</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Hoeveel tijd moet ik investeren?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Voor het mentorship programma raden we 3-5 uur per week aan. 
+                    De Done-For-You service vereist slechts 1-2 uur voor onboarding, 
+                    daarna doen wij al het werk!
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Wanneer zie ik resultaten?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    De meeste klanten zien eerste resultaten binnen 7-14 dagen. 
+                    Significante groei meestal binnen 30-60 dagen, afhankelijk van je inzet en markt.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is dit geschikt voor beginners?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absoluut! Onze programma's zijn ontworpen voor alle niveaus. 
+                    We beginnen waar jij bent en bouwen stap voor stap op naar succes.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Wat als ik niet tevreden ben?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    We bieden een 30-dagen geld-terug-garantie. 
+                    Als je niet tevreden bent, krijg je 100% van je investering terug, geen vragen gesteld.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_live_NDoClCNZcvPTcCqHknJz4rkL000PdI7L5S');
+
+        // Countdown Timer
+        function startCountdown() {
+            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Checkout Functions
+        async function checkoutMentorship() {
+            showLoading();
+            
+            // Track initiate checkout event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: 'Mentorship Program',
+                    content_category: 'Mentorship',
+                    value: 45.00,
+                    currency: 'EUR',
+                    utm_params: window.utmParams || {}
+                });
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'EUR',
+                    value: 45.00,
+                    items: [{
+                        item_name: 'Mentorship Program',
+                        price: 45.00,
+                        quantity: 1
+                    }]
+                });
+            }
+            
+            try {
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product: 'mentorship',
+                        price: 4500, // €45 in cents
+                        name: 'Mentorship Program - Per Les',
+                        description: '1-op-1 mentorship sessie met persoonlijk actieplan en lifetime support',
+                        utm_params: window.utmParams || {}
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+
+                if (result.error) {
+                    showError(result.error.message);
+                }
+            } catch (error) {
+                showError('Er ging iets mis. Probeer het opnieuw of neem contact op.');
+                console.error('Error:', error);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function checkoutDoneForYou() {
+            showLoading();
+            
+            // Track initiate checkout event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: 'Done-For-You Service',
+                    content_category: 'Complete Setup',
+                    value: 999.00,
+                    currency: 'EUR',
+                    utm_params: window.utmParams || {}
+                });
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'EUR',
+                    value: 999.00,
+                    items: [{
+                        item_name: 'Done-For-You Complete Setup',
+                        price: 999.00,
+                        quantity: 1
+                    }]
+                });
+            }
+            
+            try {
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product: 'done-for-you',
+                        price: 99900, // €999 in cents
+                        name: 'Done-For-You Complete Business Setup',
+                        description: 'Complete business setup inclusief website, funnel, marketing systeem en 3 maanden nazorg',
+                        utm_params: window.utmParams || {}
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+
+                if (result.error) {
+                    showError(result.error.message);
+                }
+            } catch (error) {
+                showError('Er ging iets mis. Probeer het opnieuw of neem contact op.');
+                console.error('Error:', error);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            const successElement = document.getElementById('successMessage');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 5000);
+        }
+
+        // Start countdown on load
+        startCountdown();
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "upsell-payment-server",
+  "version": "1.0.0",
+  "description": "Payment processing server for Upsell Business Agency",
+  "main": "payment-server.js",
+  "scripts": {
+    "start": "node payment-server.js",
+    "dev": "nodemon payment-server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.18.0",
+    "nodemailer": "^6.10.1",
+    "stripe": "^14.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
