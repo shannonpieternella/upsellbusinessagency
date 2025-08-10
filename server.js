@@ -81,6 +81,7 @@ app.use('/waitsmart-ai/js', express.static(path.join(__dirname, 'waitsmart-ai/pu
 const openAIService = require('./ai-customer-service-demo/server/services/openai');
 const industryConfig = require('./ai-customer-service-demo/server/config/industries');
 const mockDataService = require('./ai-customer-service-demo/server/services/mockData');
+const voiceAgentService = require('./ai-customer-service-demo/server/services/voiceAgent');
 
 // Store active sessions
 const activeSessions = new Map();
@@ -98,6 +99,10 @@ app.get('/ai-customer-service-demo', (req, res) => {
 
 app.get('/ai-customer-service-demo/demo/:industry', (req, res) => {
   res.sendFile(path.join(__dirname, 'ai-customer-service-demo/views/demo.html'));
+});
+
+app.get('/ai-customer-service-demo/voice-agent', (req, res) => {
+  res.sendFile(path.join(__dirname, 'ai-customer-service-demo/views/voice-agent.html'));
 });
 
 // WaitSmart AI route
@@ -386,6 +391,79 @@ Generate a professional email response that:
   }
 });
 
+// Voice Agent API Routes
+app.post('/api/voice-agent/process', async (req, res) => {
+  try {
+    const { message, industry, config, conversationHistory } = req.body;
+    
+    const result = await voiceAgentService.processWithAI(message, {
+      industry,
+      config,
+      conversationHistory
+    });
+    
+    res.json(result);
+  } catch (error) {
+    console.error('Voice agent process error:', error);
+    res.status(500).json({ 
+      error: 'Failed to process message',
+      message: error.message 
+    });
+  }
+});
+
+// Multer for file upload handling
+const multer = require('multer');
+const upload = multer({ 
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+});
+
+app.post('/api/voice-agent/transcribe', upload.single('audio'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No audio file provided' });
+    }
+    
+    const audioBuffer = req.file.buffer;
+    const result = await voiceAgentService.transcribeAudio(audioBuffer);
+    
+    res.json(result);
+  } catch (error) {
+    console.error('Transcription error:', error);
+    res.status(500).json({ 
+      error: 'Failed to transcribe audio',
+      message: error.message 
+    });
+  }
+});
+
+app.post('/api/voice-agent/speak', async (req, res) => {
+  try {
+    const { text, voice, speed } = req.body;
+    
+    const audioBuffer = await voiceAgentService.textToSpeech(text, {
+      voice,
+      speed
+    });
+    
+    res.set('Content-Type', 'audio/mp3');
+    res.send(audioBuffer);
+  } catch (error) {
+    console.error('Text-to-speech error:', error);
+    res.status(500).json({ 
+      error: 'Failed to generate speech',
+      message: error.message 
+    });
+  }
+});
+
+app.get('/api/voice-agent/analytics/:industry', (req, res) => {
+  const { industry } = req.params;
+  const analytics = voiceAgentService.getAnalytics(industry);
+  res.json(analytics);
+});
+
 // Socket.io handling
 io.on('connection', (socket) => {
   console.log('New client connected:', socket.id);
@@ -418,8 +496,206 @@ io.on('connection', (socket) => {
     io.to(`agents-${industry}`).emit('ticket-resolved', ticketId);
   });
   
+  // Voice Agent Socket Events V1
+  socket.on('connect-deepgram', async (data) => {
+    try {
+      const { industry, config } = data;
+      
+      // Build prompt based on industry and config
+      const prompt = voiceAgentService.buildSystemPrompt(industry, config);
+      
+      // Connect to Voice Agent V1
+      const agentWs = await voiceAgentService.connectVoiceAgent(socket.id, {
+        prompt: prompt,
+        voice: config.voiceModel,
+        greeting: config.greetingMessage,
+        language: config.language || 'en'
+      });
+      
+      // Handle V1 message types
+      agentWs.on('message', (data) => {
+        // Check if it's binary audio data
+        if (Buffer.isBuffer(data) && data.length > 4) {
+          const header = data.slice(0, 4).toString('utf8');
+          if (header === 'RIFF') {
+            // Forward audio data to client as base64
+            socket.emit('audio-data', data.toString('base64'));
+            return;
+          }
+        }
+        
+        // Parse JSON messages
+        let message;
+        try {
+          message = JSON.parse(data.toString());
+        } catch (e) {
+          // If it's not JSON, it might be binary audio
+          socket.emit('audio-data', data.toString('base64'));
+          return;
+        }
+        
+        switch (message.type) {
+          case 'Welcome':
+            socket.emit('deepgram-connected', { request_id: message.request_id });
+            break;
+            
+          case 'SettingsApplied':
+            socket.emit('settings-applied');
+            break;
+            
+          case 'PromptUpdated':
+            socket.emit('prompt-updated');
+            break;
+            
+          case 'SpeakUpdated':
+            socket.emit('speak-updated');
+            break;
+            
+          case 'UserStartedSpeaking':
+            socket.emit('user-started-speaking');
+            break;
+            
+          case 'AgentThinking':
+            socket.emit('agent-thinking', { content: message.content });
+            break;
+            
+          case 'ConversationText':
+            socket.emit('conversation-text', {
+              role: message.role,
+              content: message.content
+            });
+            break;
+            
+          case 'AgentStartedSpeaking':
+            socket.emit('agent-started-speaking');
+            break;
+            
+          case 'AgentAudioDone':
+            socket.emit('agent-audio-done');
+            break;
+            
+          case 'Audio':
+            // Forward audio data to client
+            socket.emit('audio-data', message.data);
+            break;
+            
+          case 'Warning':
+            socket.emit('warning', {
+              description: message.description,
+              code: message.code
+            });
+            break;
+            
+          case 'Error':
+            socket.emit('error', {
+              description: message.description,
+              code: message.code
+            });
+            break;
+            
+          case 'FunctionCallRequest':
+            // Handle function calls if needed
+            if (message.functions) {
+              message.functions.forEach(func => {
+                if (func.client_side) {
+                  socket.emit('function-call-request', func);
+                }
+              });
+            }
+            break;
+            
+          default:
+            console.log('Unhandled message type:', message.type);
+        }
+      });
+      
+      agentWs.on('error', (error) => {
+        socket.emit('deepgram-error', error.message);
+      });
+      
+      agentWs.on('close', () => {
+        socket.emit('deepgram-disconnected');
+      });
+      
+    } catch (error) {
+      socket.emit('deepgram-error', error.message);
+    }
+  });
+  
+  // Handle audio streaming from client to Deepgram
+  socket.on('stream-audio', (data) => {
+    const agentWs = voiceAgentService.getConnection(socket.id);
+    if (agentWs && agentWs.readyState === 1) {
+      // Send Audio message to Deepgram Voice Agent
+      const audioMessage = {
+        type: 'Audio',
+        data: Buffer.from(data.audio).toString('base64')
+      };
+      agentWs.send(JSON.stringify(audioMessage));
+    }
+  });
+  
+  // Handle UpdatePrompt message
+  socket.on('update-prompt', (data) => {
+    const agentWs = voiceAgentService.getConnection(socket.id);
+    if (agentWs && agentWs.readyState === 1) {
+      const updateMessage = {
+        type: 'UpdatePrompt',
+        prompt: data.prompt
+      };
+      agentWs.send(JSON.stringify(updateMessage));
+    }
+  });
+  
+  // Handle UpdateSpeak message
+  socket.on('update-speak', (data) => {
+    const agentWs = voiceAgentService.getConnection(socket.id);
+    if (agentWs && agentWs.readyState === 1) {
+      const updateMessage = {
+        type: 'UpdateSpeak',
+        model: data.model
+      };
+      agentWs.send(JSON.stringify(updateMessage));
+    }
+  });
+  
+  // Handle disconnect from Deepgram
+  socket.on('disconnect-deepgram', (data) => {
+    voiceAgentService.disconnectVoiceAgent(socket.id);
+  });
+  
+  socket.on('process-audio', async (data) => {
+    try {
+      const { audio, industry, config, conversationHistory } = data;
+      
+      // Convert base64 to buffer
+      const audioBuffer = Buffer.from(audio, 'base64');
+      
+      // Transcribe audio
+      const transcription = await voiceAgentService.transcribeAudio(audioBuffer);
+      
+      // Send transcription
+      socket.emit('transcription', transcription);
+      
+      // Process with AI
+      const aiResponse = await voiceAgentService.processWithAI(transcription.text, {
+        industry,
+        config,
+        conversationHistory
+      });
+      
+      // Send AI response
+      socket.emit('voice-response', aiResponse);
+    } catch (error) {
+      socket.emit('processing-error', error.message);
+    }
+  });
+  
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
+    // Clean up Deepgram connections
+    voiceAgentService.disconnectTranscription(socket.id);
+    voiceAgentService.disconnectVoiceAgent(socket.id);
   });
 });
 

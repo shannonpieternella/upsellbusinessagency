@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Agent - Enterprise Customer Service Solution</title>
+    <link rel="stylesheet" href="/ai-customer-service-demo/css/voice-agent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/recordrtc@5/RecordRTC.min.js"></script>
+</head>
+<body>
+    <!-- Professional Header -->
+    <header class="voice-agent-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="/" class="logo-link">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <i class='bx bxs-microphone-alt'></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">VoiceAI Pro</span>
+                            <span class="logo-sub">Enterprise Voice Solution</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="header-center">
+                <div class="industry-selector">
+                    <label>Industry:</label>
+                    <select id="industrySelect" class="industry-dropdown">
+                        <option value="healthcare">🏥 Healthcare</option>
+                        <option value="ecommerce">🛍️ E-Commerce</option>
+                        <option value="beauty">💅 Beauty Salon</option>
+                        <option value="realestate">🏠 Real Estate</option>
+                        <option value="financial">💰 Financial Services</option>
+                        <option value="hospitality">🏨 Hospitality</option>
+                        <option value="education">🎓 Education</option>
+                        <option value="automotive">🚗 Automotive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn-customize" id="customizeBtn">
+                    <i class='bx bx-cog'></i>
+                    Customize AI
+                </button>
+                <button class="btn-analytics" id="analyticsBtn">
+                    <i class='bx bx-bar-chart-alt-2'></i>
+                    Analytics
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Voice Agent Interface -->
+    <main class="voice-agent-main">
+        <div class="agent-container">
+            <!-- Left Panel - Voice Interface -->
+            <div class="voice-panel">
+                <div class="voice-header">
+                    <h2>AI Voice Assistant</h2>
+                    <div class="status-indicator">
+                        <span class="status-dot" id="statusDot"></span>
+                        <span class="status-text" id="statusText">Ready</span>
+                    </div>
+                </div>
+
+                <!-- Voice Visualization -->
+                <div class="voice-visualization">
+                    <div class="ai-avatar" id="aiAvatar">
+                        <div class="avatar-ring ring-1"></div>
+                        <div class="avatar-ring ring-2"></div>
+                        <div class="avatar-ring ring-3"></div>
+                        <div class="avatar-core">
+                            <i class='bx bxs-bot'></i>
+                        </div>
+                    </div>
+                    <div class="waveform-container" id="waveformContainer">
+                        <div id="waveform"></div>
+                    </div>
+                </div>
+
+                <!-- Voice Controls -->
+                <div class="voice-controls">
+                    <button class="voice-btn" id="startBtn">
+                        <i class='bx bx-microphone'></i>
+                        <span>Start Hands-Free Mode</span>
+                    </button>
+                    <button class="voice-btn stop" id="stopBtn" style="display: none;">
+                        <i class='bx bx-stop'></i>
+                        <span>End Conversation</span>
+                    </button>
+                </div>
+                
+                <!-- Conversation Mode Indicator -->
+                <div class="conversation-mode-indicator" id="modeIndicator" style="display: none;">
+                    <div class="mode-content">
+                        <span class="mode-icon">🎤</span>
+                        <span class="mode-text">Hands-Free Mode Active</span>
+                        <span class="mode-hint">Just speak naturally - I'm listening!</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Test Scenarios</h3>
+                    <div class="scenario-grid" id="scenarioGrid">
+                        <!-- Scenarios will be populated based on industry -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Panel - Conversation -->
+            <div class="conversation-panel">
+                <div class="conversation-header">
+                    <h2>Live Conversation</h2>
+                    <div class="conversation-actions">
+                        <button class="action-btn" id="clearBtn">
+                            <i class='bx bx-trash'></i>
+                        </button>
+                        <button class="action-btn" id="exportBtn">
+                            <i class='bx bx-download'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="conversation-content" id="conversationContent">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">
+                            <i class='bx bx-conversation'></i>
+                        </div>
+                        <h3>Welcome to VoiceAI Pro</h3>
+                        <p class="welcome-subtitle">Powered by Deepgram's Advanced Voice Technology</p>
+                        
+                        <div class="usage-instructions">
+                            <h4>How to Use:</h4>
+                            <div class="instruction-item">
+                                <span class="instruction-icon">💬</span>
+                                <div>
+                                    <strong>Text Chat:</strong> Type in the box below and press Enter or click Send
+                                </div>
+                            </div>
+                            <div class="instruction-item">
+                                <span class="instruction-icon">🎙️</span>
+                                <div>
+                                    <strong>Voice Input:</strong> Click the green microphone button, speak, then click stop
+                                </div>
+                            </div>
+                            <div class="instruction-item">
+                                <span class="instruction-icon">🔊</span>
+                                <div>
+                                    <strong>Voice Output:</strong> AI responses are spoken aloud using Deepgram TTS
+                                </div>
+                            </div>
+                            <div class="instruction-item">
+                                <span class="instruction-icon">📞</span>
+                                <div>
+                                    <strong>Hands-Free Mode:</strong> Click "Start Hands-Free Mode" for continuous conversation - just speak naturally and I'll respond automatically!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="welcome-note">
+                            <strong>Note:</strong> Ensure your Deepgram API key is configured in the .env file for voice features to work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Real-time Metrics -->
+                <div class="conversation-metrics">
+                    <div class="metric-item">
+                        <span class="metric-label">Response Time</span>
+                        <span class="metric-value" id="responseTime">0ms</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Sentiment</span>
+                        <span class="metric-value" id="sentiment">Neutral</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Language</span>
+                        <span class="metric-value" id="detectedLang">EN</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Confidence</span>
+                        <span class="metric-value" id="confidence">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Configuration & Info -->
+            <div class="config-panel">
+                <div class="config-header">
+                    <h2>AI Configuration</h2>
+                </div>
+
+                <div class="config-content">
+                    <!-- Voice Settings -->
+                    <div class="config-section">
+                        <h3>Voice Settings</h3>
+                        <div class="config-group">
+                            <label>Voice Model</label>
+                            <select id="voiceModel" class="config-select">
+                                <option value="aura-asteria-en">Asteria (Professional Female)</option>
+                                <option value="aura-luna-en">Luna (Friendly Female)</option>
+                                <option value="aura-stella-en">Stella (Warm Female)</option>
+                                <option value="aura-athena-en">Athena (Authoritative Female)</option>
+                                <option value="aura-hera-en">Hera (Mature Female)</option>
+                                <option value="aura-orion-en">Orion (Professional Male)</option>
+                                <option value="aura-perseus-en">Perseus (Friendly Male)</option>
+                                <option value="aura-angus-en">Angus (Warm Male)</option>
+                                <option value="aura-orpheus-en">Orpheus (Engaging Male)</option>
+                                <option value="aura-helios-en">Helios (Mature Male)</option>
+                            </select>
+                        </div>
+                        <div class="config-group">
+                            <label>Speech Speed</label>
+                            <input type="range" id="speechSpeed" min="0.5" max="2" step="0.1" value="1" class="config-slider">
+                            <span class="slider-value">1.0x</span>
+                        </div>
+                    </div>
+
+                    <!-- AI Behavior -->
+                    <div class="config-section">
+                        <h3>AI Behavior</h3>
+                        <div class="config-group">
+                            <label>Personality</label>
+                            <select id="personality" class="config-select">
+                                <option value="professional">Professional</option>
+                                <option value="friendly">Friendly</option>
+                                <option value="empathetic">Empathetic</option>
+                                <option value="efficient">Efficient</option>
+                                <option value="casual">Casual</option>
+                            </select>
+                        </div>
+                        <div class="config-group">
+                            <label>Response Length</label>
+                            <select id="responseLength" class="config-select">
+                                <option value="concise">Concise</option>
+                                <option value="balanced">Balanced</option>
+                                <option value="detailed">Detailed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Custom Instructions -->
+                    <div class="config-section">
+                        <h3>Custom Instructions</h3>
+                        <textarea id="customInstructions" class="config-textarea" placeholder="Add specific instructions for your AI agent..."></textarea>
+                    </div>
+
+                    <!-- Save Configuration -->
+                    <button class="btn-save-config" id="saveConfig">
+                        <i class='bx bx-save'></i>
+                        Save Configuration
+                    </button>
+                </div>
+
+                <!-- Features List -->
+                <div class="features-section">
+                    <h3>Key Features</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class='bx bx-check-circle'></i>
+                            <span>Real-time speech recognition</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class='bx bx-check-circle'></i>
+                            <span>Natural language understanding</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class='bx bx-check-circle'></i>
+                            <span>Multi-language support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class='bx bx-check-circle'></i>
+                            <span>Sentiment analysis</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class='bx bx-check-circle'></i>
+                            <span>Custom training available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Analytics Modal -->
+    <div class="modal" id="analyticsModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Voice Agent Analytics</h2>
+                <button class="modal-close" id="closeAnalytics">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="analytics-grid">
+                    <!-- KPI Cards -->
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class='bx bx-phone-call'></i>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value">1,247</span>
+                            <span class="kpi-label">Total Calls Handled</span>
+                            <span class="kpi-trend positive">+12% this week</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class='bx bx-time'></i>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value">2.3s</span>
+                            <span class="kpi-label">Avg Response Time</span>
+                            <span class="kpi-trend positive">-0.5s improvement</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class='bx bx-smile'></i>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value">94%</span>
+                            <span class="kpi-label">Customer Satisfaction</span>
+                            <span class="kpi-trend positive">+3% this month</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class='bx bx-dollar'></i>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value">$12,450</span>
+                            <span class="kpi-label">Cost Savings</span>
+                            <span class="kpi-trend positive">This month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-box">
+                        <h3>Call Volume Over Time</h3>
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <h3>Resolution Rate by Category</h3>
+                        <canvas id="resolutionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customize Modal -->
+    <div class="modal" id="customizeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Customize Your AI Agent</h2>
+                <button class="modal-close" id="closeCustomize">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="customize-form">
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" id="companyName" class="form-input" placeholder="Your Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Greeting Message</label>
+                        <textarea id="greetingMessage" class="form-textarea" placeholder="Hello! Thank you for calling [Company]. How can I help you today?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Business Hours</label>
+                        <input type="text" id="businessHours" class="form-input" placeholder="Mon-Fri 9AM-6PM">
+                    </div>
+                    <div class="form-group">
+                        <label>Key Services (comma separated)</label>
+                        <input type="text" id="keyServices" class="form-input" placeholder="Sales, Support, Billing">
+                    </div>
+                    <div class="form-group">
+                        <label>FAQ Document (Optional)</label>
+                        <input type="file" id="faqDocument" class="form-input" accept=".pdf,.txt,.doc,.docx">
+                    </div>
+                    <button class="btn-apply" id="applyCustomization">
+                        Apply Customization
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/ai-customer-service-demo/js/voice-agent.js"></script>
+</body>
+</html>
